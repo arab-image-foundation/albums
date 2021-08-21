@@ -4,6 +4,7 @@
 @import "bootstrap_overrides";
 @import "~bootstrap/scss/bootstrap";
 
+@import "partials/modal";
 @import "partials/navigation";
 @import "partials/homepage";
 
