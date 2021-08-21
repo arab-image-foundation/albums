@@ -1,0 +1,20 @@
+.navbar {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+
+  .container {
+    position: relative;
+    
+    .nav-brand {
+      position: absolute;
+      right: $container-padding-x;
+      top: 0;
+
+      @include media-breakpoint-up(lg) { 
+        position: relative;
+        right: auto;
+        top: auto;
+      }
+    }
+  }
+}
