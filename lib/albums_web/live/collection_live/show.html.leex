@@ -1,0 +1,38 @@
+<%= live_redirect "<- Collections", to: Routes.collection_index_path(@socket, :index) %>
+
+<h1>Collection</h1>
+
+<%= if @live_action in [:edit] do %>
+  <%= live_modal @socket, AlbumsWeb.CollectionLive.FormComponent,
+    id: @collection.id,
+    title: @page_title,
+    action: @live_action,
+    collection: @collection,
+    return_to: Routes.collection_show_path(@socket, :show, @collection) %>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Number:</strong>
+    <%= @collection.aifid %>
+  </li>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @collection.name %>
+  </li>
+
+  <li>
+    <strong>Contract:</strong>
+    <%= @collection.contract %>
+  </li>
+
+  <li>
+    <strong>Credit line:</strong>
+    <%= @collection.credit_line %>
+  </li>
+
+</ul>
+
+<%= live_patch "Edit", to: Routes.collection_show_path(@socket, :edit, @collection), class: "btn btn-warning" %>

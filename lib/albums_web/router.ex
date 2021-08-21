@@ -18,6 +18,13 @@ defmodule AlbumsWeb.Router do
     pipe_through :browser
 
     live "/", PageLive, :index
+
+    live "/collections", CollectionLive.Index, :index
+    live "/collections/new", CollectionLive.Index, :new
+    live "/collections/:id/edit", CollectionLive.Index, :edit
+
+    live "/collections/:id", CollectionLive.Show, :show
+    live "/collections/:id/show/edit", CollectionLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.

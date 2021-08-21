@@ -1,0 +1,45 @@
+<div class="d-flex justify-content-between">
+  <h1>Collections</h1>
+  <span><%= live_patch "New Collection", to: Routes.collection_index_path(@socket, :new), class: "btn btn-success" %></span>
+</div>
+
+<%= if @live_action in [:new, :edit] do %>
+  <%= live_modal @socket, AlbumsWeb.CollectionLive.FormComponent,
+    id: @collection.id || :new,
+    title: @page_title,
+    action: @live_action,
+    collection: @collection,
+    return_to: Routes.collection_index_path(@socket, :index) %>
+<% end %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Number</th>
+      <th>Name</th>
+      <th>Contract</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="collections">
+    <%= for collection <- @collections do %>
+      <tr id="collection-<%= collection.id %>">
+        <td><%= collection.aifid %></td>
+        <td><%= collection.name %></td>
+        <td><%= collection.contract %></td>
+
+        <td>
+          <div class="d-flex justify-content-end">
+            <%= live_redirect "Show", to: Routes.collection_show_path(@socket, :show, collection),
+                  class: "me-3 btn btn-sm btn-primary" %>
+            <%= live_patch "Edit", to: Routes.collection_index_path(@socket, :edit, collection),
+                  class: "me-5 btn btn-sm btn-warning" %>
+            <%= link "Delete", to: "#", phx_click: "delete", phx_value_id: collection.id,
+                  data: [confirm: "Are you sure?"], class: "btn btn-sm btn-danger" %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
