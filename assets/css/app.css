@@ -1,9 +1,11 @@
 /* This file is for your main application css. */
 /* @import "./phoenix.css"; */
 
+@import "bootstrap_overrides";
 @import "~bootstrap/scss/bootstrap";
 
 @import "partials/navigation";
+@import "partials/homepage";
 
 /* LiveView specific classes for your customizations */
 .phx-no-feedback.invalid-feedback,

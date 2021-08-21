@@ -1,5 +1,5 @@
-<div class="row justify-content-md-center mt-5">
-  <div class="col col-md-9 col-lg-8">
+<div id="homepage" class="row justify-content-md-center mt-5">
+  <div class="col col-md-9 col-lg-8 pb-4">
     <h1>Albums Project</h1>
     <p>
       The Arab Image Foundation was awarded a grant by the Hillman Family Foundation to carry out the
@@ -8,5 +8,26 @@
       the album, build custom-made boxes of appropriate sizes for each of the albums, and lastly to
       digitize the albums and make them available online.
     </p>
+  </div>
+  <hr class="bg-secondary">
+  <div class="row">
+    <div class="col">
+      <h2 class="mb-4">Collections</h2>
+    </div>
+  </div>
+  <div class="homepage-collections">
+    <%= for collection <- @collections do %>
+      <div class="">
+        <div id="collection-<%= collection.id %>" class="card">
+          <img src="https://via.placeholder.com/800x450?text=<%= collection.name %> collection"
+              alt="<%= collection.name %>" class="card-img-top" />
+          <div class="card-body">
+            <%= live_redirect "#{collection.aifid} — #{collection.name} Collection",
+                  to: Routes.collection_show_path(@socket, :show, collection),
+                  class: "fw-bold card-text stretched-link" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>

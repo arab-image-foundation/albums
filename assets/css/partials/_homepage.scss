@@ -1,0 +1,34 @@
+#homepage {
+
+  .homepage-collections {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+
+    @include media-breakpoint-up(md) { 
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    @include media-breakpoint-up(lg) { 
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .card {
+      height: 100%;
+      
+      &:hover {
+        box-shadow: $box-shadow;
+        
+        a.card-text {
+          color: $blue-700;
+        }    
+      }
+      
+      a.card-text {
+        text-decoration: none;
+        color: $gray-800;
+      }
+    }    
+  }
+}
