@@ -89,6 +89,7 @@ defmodule AlbumsWeb do
       import Phoenix.View
 
       import AlbumsWeb.ErrorHelpers
+      import AlbumsWeb.InputHelpers
       import AlbumsWeb.Gettext
       alias AlbumsWeb.Router.Helpers, as: Routes
     end
