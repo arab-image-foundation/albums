@@ -4,30 +4,18 @@
   id: "collection-form",
   phx_target: @myself,
   phx_change: "validate",
+  novalidate: true,
   phx_submit: "save" %>
 
-  <div class="my-3">
-    <%= label f, :aifid, class: "form-label" %>
-    <%= text_input f, :aifid, class: "form-control" %>
-    <%= error_tag f, :aifid %>
-  </div>
+  <%= input f, :aifid, group_class: "my-3", label: "Number",
+        input_opts: [placeholder: "Collection number"] %>
 
-  <div class="my-3">
-    <%= label f, :name, class: "form-label" %>
-    <%= text_input f, :name, class: "form-control" %>
-    <%= error_tag f, :name %>
+  <%= input f, :name, group_class: "my-3",
+        input_opts: [placeholder: "Collection name"] %>
 
-  <div class="my-3">
-    <%= label f, :contract, class: "form-label" %>
-    <%= text_input f, :contract, class: "form-control" %>
-    <%= error_tag f, :contract %>
-  </div>
+  <%= input f, :contract, group_class: "my-3" %>
 
-  <div class="my-3">
-    <%= label f, :credit_line, class: "form-label" %>
-    <%= text_input f, :credit_line, class: "form-control" %>
-    <%= error_tag f, :credit_line %>
-  </div>
+  <%= input f, :credit_line, group_class: "my-3" %>
 
   <%= submit "Save", phx_disable_with: "Saving...", class: "btn btn-primary" %>
 </form>
