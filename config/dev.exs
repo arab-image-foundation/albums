@@ -60,8 +60,8 @@ config :aif_albums, AIFAlbumsWeb.Endpoint,
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/aif_albums_web/(live|views)/.*(ex)$",
-      ~r"lib/aif_albums_web/templates/.*(eex)$"
+      ~r"lib/albums_web/(live|views)/.*(ex)$",
+      ~r"lib/albums_web/templates/.*(eex)$"
     ]
   ]
 
