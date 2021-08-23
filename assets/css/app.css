@@ -4,8 +4,10 @@
 @import "bootstrap_overrides";
 @import "~bootstrap/scss/bootstrap";
 
+@import "partials/layout";
 @import "partials/modal";
 @import "partials/navigation";
+@import "partials/footer";
 @import "partials/homepage";
 
 /* LiveView specific classes for your customizations */
