@@ -1,4 +1,4 @@
-defmodule Albums.Repo.Migrations.CreateCollections do
+defmodule AIFAlbums.Repo.Migrations.CreateCollections do
   use Ecto.Migration
 
   def change do

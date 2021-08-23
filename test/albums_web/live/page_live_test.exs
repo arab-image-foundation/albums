@@ -1,5 +1,5 @@
-defmodule AlbumsWeb.PageLiveTest do
-  use AlbumsWeb.ConnCase
+defmodule AIFAlbumsWeb.PageLiveTest do
+  use AIFAlbumsWeb.ConnCase
 
   import Phoenix.LiveViewTest
 

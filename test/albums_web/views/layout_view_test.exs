@@ -1,5 +1,5 @@
-defmodule AlbumsWeb.LayoutViewTest do
-  use AlbumsWeb.ConnCase, async: true
+defmodule AIFAlbumsWeb.LayoutViewTest do
+  use AIFAlbumsWeb.ConnCase, async: true
 
   # When testing helpers, you may want to import Phoenix.HTML and
   # use functions such as safe_to_string() to convert the helper

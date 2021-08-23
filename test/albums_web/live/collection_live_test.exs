@@ -1,9 +1,9 @@
-defmodule AlbumsWeb.CollectionLiveTest do
-  use AlbumsWeb.ConnCase
+defmodule AIFAlbumsWeb.CollectionLiveTest do
+  use AIFAlbumsWeb.ConnCase
 
   import Phoenix.LiveViewTest
 
-  alias Albums.Archives
+  alias AIFAlbums.Archives
 
   @create_attrs %{aifid: "some aifid", contract: "some contract", credit_line: "some credit_line", name: "some name"}
   @update_attrs %{aifid: "some updated aifid", contract: "some updated contract", credit_line: "some updated credit_line", name: "some updated name"}

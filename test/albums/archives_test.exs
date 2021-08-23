@@ -1,10 +1,10 @@
-defmodule Albums.ArchivesTest do
-  use Albums.DataCase
+defmodule AIFAlbums.ArchivesTest do
+  use AIFAlbums.DataCase
 
-  alias Albums.Archives
+  alias AIFAlbums.Archives
 
   describe "collections" do
-    alias Albums.Archives.Collection
+    alias AIFAlbums.Archives.Collection
 
     @valid_attrs %{aifid: "some aifid", contract: "some contract", credit_line: "some credit_line", name: "some name"}
     @update_attrs %{aifid: "some updated aifid", contract: "some updated contract", credit_line: "some updated credit_line", name: "some updated name"}

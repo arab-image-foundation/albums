@@ -1,4 +1,4 @@
-# Albums
+# AIFAlbums
 
 To start your Phoenix server:
 
