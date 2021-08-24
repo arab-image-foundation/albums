@@ -22,6 +22,17 @@ defmodule AIFAlbums.Archives do
     Repo.all(Collection)
   end
 
+  def list_collections(criteria) when is_list(criteria) do
+    query = from c in Collection
+
+    Enum.reduce(criteria, query, fn
+      {:sort, %{sort_by: sort_by, sort_order: sort_order}}, query ->
+        from q in query, order_by: [{^sort_order, ^sort_by}]
+    end)
+    |> IO.inspect()
+    |> Repo.all()
+  end
+
   @doc """
   Gets a single collection.
 
