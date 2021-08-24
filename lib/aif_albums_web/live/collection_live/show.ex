@@ -13,7 +13,7 @@ defmodule AIFAlbumsWeb.CollectionLive.Show do
     {:noreply,
      socket
      |> assign(:page_title, page_title(socket.assigns.live_action))
-     |> assign(:collection, Archives.get_collection!(id))}
+     |> assign(:collection, Archives.get_collection_with_albums(id))}
   end
 
   defp page_title(:show), do: "Show Collection"

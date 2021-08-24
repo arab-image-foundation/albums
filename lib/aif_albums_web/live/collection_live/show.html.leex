@@ -24,4 +24,22 @@
       <dd><%= @collection.credit_line %></dd>
     <% end %>
   </dl>
+
+  <h2 class="mt-5 mb-4">Albums</h2>
+  <div class="collection-albums">
+    <%= for album <- @collection.albums do %>
+      <div class="">
+        <div id="collection-<%= album.id %>" class="card">
+          <img src="https://via.placeholder.com/800x450?text=<%= album.aifid %>"
+              alt="Album <%= album.aifid %>" class="card-img-top" />
+          <div class="card-body">
+            <%= live_redirect "#{album.aifid}",
+                  to: Routes.album_show_path(@socket, :show, album),
+                  class: "fw-bold card-text stretched-link" %>
+            <p class="mt-2"><%= album.description %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 <div>
