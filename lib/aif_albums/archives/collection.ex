@@ -8,6 +8,8 @@ defmodule AIFAlbums.Archives.Collection do
     field :credit_line, :string
     field :name, :string
 
+    has_many :albums, AIFAlbums.Albums.Album
+
     timestamps()
   end
 
