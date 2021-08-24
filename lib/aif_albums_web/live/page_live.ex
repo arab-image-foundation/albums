@@ -16,8 +16,6 @@ defmodule AIFAlbumsWeb.PageLive do
       |> assign(sort_by: :aifid)
       |> assign(sort_order: :asc)
 
-    IO.inspect(socket, label: "socket:")
-
     {:ok, socket}
   end
 

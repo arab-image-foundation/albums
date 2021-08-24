@@ -29,7 +29,6 @@ defmodule AIFAlbums.Collections do
       {:sort, %{sort_by: sort_by, sort_order: sort_order}}, query ->
         from q in query, order_by: [{^sort_order, ^sort_by}]
     end)
-    |> IO.inspect()
     |> Repo.all()
   end
 
