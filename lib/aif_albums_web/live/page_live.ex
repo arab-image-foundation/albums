@@ -1,7 +1,7 @@
 defmodule AIFAlbumsWeb.PageLive do
   use AIFAlbumsWeb, :live_view
 
-  alias AIFAlbums.Archives
+  alias AIFAlbums.Collections
 
   @impl true
   def mount(_params, _session, socket) do
@@ -36,6 +36,6 @@ defmodule AIFAlbumsWeb.PageLive do
   end
 
   defp list_collections(criteria) do
-    Archives.list_collections(criteria)
+    Collections.list_collections(criteria)
   end
 end

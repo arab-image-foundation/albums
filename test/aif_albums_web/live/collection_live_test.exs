@@ -3,14 +3,14 @@ defmodule AIFAlbumsWeb.CollectionLiveTest do
 
   import Phoenix.LiveViewTest
 
-  alias AIFAlbums.Archives
+  alias AIFAlbums.Collections
 
   @create_attrs %{aifid: "some aifid", contract: "some contract", credit_line: "some credit_line", name: "some name"}
   @update_attrs %{aifid: "some updated aifid", contract: "some updated contract", credit_line: "some updated credit_line", name: "some updated name"}
   @invalid_attrs %{aifid: nil, contract: nil, credit_line: nil, name: nil}
 
   defp fixture(:collection) do
-    {:ok, collection} = Archives.create_collection(@create_attrs)
+    {:ok, collection} = Collections.create_collection(@create_attrs)
     collection
   end
 

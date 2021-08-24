@@ -14,7 +14,7 @@ defmodule AIFAlbums.Albums.Album do
     field :photographer, :string
     field :width, :float
 
-    belongs_to :collection, AIFAlbums.Archives.Collection
+    belongs_to :collection, AIFAlbums.Collections.Collection
 
     timestamps()
   end

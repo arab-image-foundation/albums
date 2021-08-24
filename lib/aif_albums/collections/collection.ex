@@ -1,4 +1,4 @@
-defmodule AIFAlbums.Archives.Collection do
+defmodule AIFAlbums.Collections.Collection do
   use Ecto.Schema
   import Ecto.Changeset
 

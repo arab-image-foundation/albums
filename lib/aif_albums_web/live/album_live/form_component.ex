@@ -2,13 +2,13 @@ defmodule AIFAlbumsWeb.AlbumLive.FormComponent do
   use AIFAlbumsWeb, :live_component
 
   alias AIFAlbums.Albums
-  alias AIFAlbums.Archives
+  alias AIFAlbums.Collections
 
   @impl true
   def update(%{album: album} = assigns, socket) do
     changeset = Albums.change_album(album)
 
-    collections = Archives.list_collections()
+    collections = Collections.list_collections()
 
     {:ok,
      socket

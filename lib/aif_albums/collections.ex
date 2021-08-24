@@ -1,12 +1,12 @@
-defmodule AIFAlbums.Archives do
+defmodule AIFAlbums.Collections do
   @moduledoc """
-  The Archives context.
+  The Collections context.
   """
 
   import Ecto.Query, warn: false
   alias AIFAlbums.Repo
 
-  alias AIFAlbums.Archives.Collection
+  alias AIFAlbums.Collections.Collection
   alias AIFAlbums.Albums.Album
 
   @doc """
