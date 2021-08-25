@@ -9,7 +9,8 @@
 @import "partials/navigation";
 @import "partials/footer";
 @import "partials/homepage";
-@import "partials/collection";
+@import "partials/collections_index";
+@import "partials/collections_show";
 
 /* LiveView specific classes for your customizations */
 .phx-no-feedback.invalid-feedback,
