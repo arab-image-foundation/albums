@@ -8,7 +8,7 @@ defmodule AIFAlbumsWeb.AlbumLive.FormComponent do
   def update(%{album: album} = assigns, socket) do
     changeset = Albums.change_album(album)
 
-    collections = Collections.list_collections()
+    collections = Collections.list_collections(sort: %{sort_by: :aifid, sort_order: :asc})
 
     {:ok,
      socket
