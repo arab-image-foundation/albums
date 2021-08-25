@@ -1,4 +1,7 @@
-<h1>Listing Albums</h1>
+<div class="d-flex justify-content-between">
+  <h1>Albums</h1>
+  <span><%= live_patch "New Album", to: Routes.album_index_path(@socket, :new), class: "btn btn-success" %></span>
+</div>
 
 <%= if @live_action in [:new, :edit] do %>
   <%= live_modal @socket, AIFAlbumsWeb.AlbumLive.FormComponent,
@@ -9,20 +12,11 @@
     return_to: Routes.album_index_path(@socket, :index) %>
 <% end %>
 
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>Aifid</th>
+      <th>Number</th>
       <th>Description</th>
-      <th>Height</th>
-      <th>Width</th>
-      <th>Depth</th>
-      <th>Condition</th>
-      <th>Inscriptions</th>
-      <th>Photographer</th>
-      <th>Date</th>
-      <th>City</th>
-
       <th></th>
     </tr>
   </thead>
@@ -31,19 +25,15 @@
       <tr id="album-<%= album.id %>">
         <td><%= album.aifid %></td>
         <td><%= album.description %></td>
-        <td><%= album.height %></td>
-        <td><%= album.width %></td>
-        <td><%= album.depth %></td>
-        <td><%= album.condition %></td>
-        <td><%= album.inscriptions %></td>
-        <td><%= album.photographer %></td>
-        <td><%= album.date %></td>
-        <td><%= album.city %></td>
-
         <td>
-          <span><%= live_redirect "Show", to: Routes.album_show_path(@socket, :show, album) %></span>
-          <span><%= live_patch "Edit", to: Routes.album_index_path(@socket, :edit, album) %></span>
-          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: album.id, data: [confirm: "Are you sure?"] %></span>
+          <div class="d-flex justify-content-end">
+            <%= live_redirect "Show", to: Routes.album_show_path(@socket, :show, album),
+                  class: "me-3 btn btn-sm btn-primary" %>
+            <%= live_patch "Edit", to: Routes.album_index_path(@socket, :edit, album),
+                  class: "me-5 btn btn-sm btn-warning" %>
+            <%= link "Delete", to: "#", phx_click: "delete", phx_value_id: album.id,
+                  data: [confirm: "Are you sure?"], class: "btn btn-sm btn-danger" %>
+          </div>
         </td>
       </tr>
     <% end %>
