@@ -22,7 +22,7 @@
 
   <%= input f, :depth, using: :number_input, group_class: "my-3" %>
 
-  <%= input f, :condition, group_class: "my-3",
+  <%= input f, :condition, using: :textarea, group_class: "my-3",
       input_opts: [placeholder: "Describe the condition of the album"] %>
 
   <%= input f, :inscriptions, group_class: "my-3",
