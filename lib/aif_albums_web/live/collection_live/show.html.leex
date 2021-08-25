@@ -15,11 +15,11 @@
   <dl>
     <dt>Reference number</dt>
     <dd><%= @collection.aifid %></dd>
-    <% if @collection.contract != nil do %>
+    <%= if @collection.contract != nil do %>
       <dt>Contract reference</dt>
       <dd><%= @collection.contract %></dd>
     <% end %>
-    <% if @collection.credit_line != nil do %>
+    <%= if @collection.credit_line != nil do %>
       <dt>Credit line</dt>
       <dd><%= @collection.credit_line %></dd>
     <% end %>
