@@ -10,9 +10,9 @@
       <% end %>
     </div>
   </div>
-  <nav class="navbar navbar-expand-lg navbar-light" role="navigation">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" role="navigation">
     <div class="container">
-      <a class="navbar-brand" href="#">AIF Albums Project</a>
+      <%= link("AIF Albums Project", to: Routes.page_path(@conn, :index), class: "navbar-brand") %>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
