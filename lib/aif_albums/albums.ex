@@ -37,6 +37,8 @@ defmodule AIFAlbums.Albums do
   """
   def get_album!(id), do: Repo.get!(Album, id)
 
+  def get_album_with_collection(id), do: Repo.get!(Album, id) |> Repo.preload(:collection)
+
   @doc """
   Creates a album.
 
