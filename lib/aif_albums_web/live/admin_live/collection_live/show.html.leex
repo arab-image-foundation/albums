@@ -1,0 +1,45 @@
+<%= if @live_action in [:edit] do %>
+  <%= live_modal @socket, AIFAlbumsWeb.AdminLive.CollectionLive.FormComponent,
+    id: @collection.id,
+    title: @page_title,
+    action: @live_action,
+    collection: @collection,
+    return_to: Routes.admin_collection_show_path(@socket, :show, @collection) %>
+<% end %>
+
+<div class="collection-details">
+  <h1>
+    <%= @collection.name %> Collection
+  </h1>
+
+  <dl>
+    <dt>Reference number</dt>
+    <dd><%= @collection.aifid %></dd>
+    <%= if @collection.contract != nil do %>
+      <dt>Contract reference</dt>
+      <dd><%= @collection.contract %></dd>
+    <% end %>
+    <%= if @collection.credit_line != nil do %>
+      <dt>Credit line</dt>
+      <dd><%= @collection.credit_line %></dd>
+    <% end %>
+  </dl>
+
+  <h2 class="mt-5 mb-4">Albums</h2>
+  <div class="collection-albums">
+    <%= for album <- @collection.albums do %>
+      <div class="">
+        <div id="collection-<%= album.id %>" class="card">
+          <img src="https://via.placeholder.com/800x450?text=<%= album.aifid %>"
+              alt="Album <%= album.aifid %>" class="card-img-top" />
+          <div class="card-body">
+            <%= live_redirect "#{album.aifid}",
+                  to: Routes.admin_album_show_path(@socket, :show, album),
+                  class: "fw-bold card-text stretched-link" %>
+            <p class="mt-2"><%= album.description %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<div>

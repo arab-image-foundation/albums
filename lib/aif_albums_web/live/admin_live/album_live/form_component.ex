@@ -1,4 +1,4 @@
-defmodule AIFAlbumsWeb.AlbumLive.FormComponent do
+defmodule AIFAlbumsWeb.AdminLive.AlbumLive.FormComponent do
   use AIFAlbumsWeb, :live_component
 
   alias AIFAlbums.Albums

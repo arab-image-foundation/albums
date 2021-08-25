@@ -20,18 +20,22 @@ defmodule AIFAlbumsWeb.Router do
     live "/", PageLive, :index
 
     live "/collections", CollectionLive.Index, :index
-    live "/collections/new", CollectionLive.Index, :new
-    live "/collections/:id/edit", CollectionLive.Index, :edit
-
     live "/collections/:id", CollectionLive.Show, :show
-    live "/collections/:id/show/edit", CollectionLive.Show, :edit
 
     live "/albums", AlbumLive.Index, :index
-    live "/albums/new", AlbumLive.Index, :new
-    live "/albums/:id/edit", AlbumLive.Index, :edit
-
     live "/albums/:id", AlbumLive.Show, :show
-    live "/albums/:id/show/edit", AlbumLive.Show, :edit
+
+    live "/admin", AdminLive.Index, :index
+
+    live "/admin/collections", AdminLive.CollectionLive.Index, :index
+    live "/admin/collections/new", AdminLive.CollectionLive.Index, :new
+    live "/admin/collections/:id", AdminLive.CollectionLive.Show, :show
+    live "/admin/collections/:id/edit", AdminLive.CollectionLive.Index, :edit
+
+    live "/admin/albums", AdminLive.AlbumLive.Index, :index
+    live "/admin/albums/new", AdminLive.AlbumLive.Index, :new
+    live "/admin/albums/:id", AdminLive.AlbumLive.Show, :show
+    live "/admin/albums/:id/edit", AdminLive.AlbumLive.Index, :edit
   end
 
   # Other scopes may use custom stacks.
