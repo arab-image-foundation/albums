@@ -64,7 +64,7 @@
 
       <%= if @album.date != nil do %>
         <dt>Date:</dt>
-        <dd><%= @album.date %></dd>
+        <dd><%= Timex.format!(@album.date, "{Mfull} {YYYY}") %></dd>
       <% end %>
 
       <%= if @album.city != nil do %>
