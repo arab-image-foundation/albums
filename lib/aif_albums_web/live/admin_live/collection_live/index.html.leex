@@ -15,7 +15,7 @@
 </div>
 
 <%= if @live_action in [:new, :edit] do %>
-  <%= live_modal @socket, AIFAlbumsWeb.AdminLive.CollectionLive.FormComponent,
+  <%= live_modal AIFAlbumsWeb.AdminLive.CollectionLive.FormComponent,
     id: @collection.id || :new,
     title: @page_title,
     action: @live_action,

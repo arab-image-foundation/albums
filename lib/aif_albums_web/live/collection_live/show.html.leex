@@ -1,5 +1,5 @@
 <%= if @live_action in [:edit] do %>
-  <%= live_modal @socket, AIFAlbumsWeb.CollectionLive.FormComponent,
+  <%= live_modal AIFAlbumsWeb.CollectionLive.FormComponent,
     id: @collection.id,
     title: @page_title,
     action: @live_action,

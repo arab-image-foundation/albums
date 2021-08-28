@@ -15,9 +15,9 @@ defmodule AIFAlbumsWeb.LiveHelpers do
         collection: @collection,
         return_to: Routes.collection_index_path(@socket, :index) %>
   """
-  def live_modal(socket, component, opts) do
+  def live_modal(component, opts) do
     path = Keyword.fetch!(opts, :return_to)
     modal_opts = [id: :modal, return_to: path, component: component, opts: opts]
-    live_component(socket, AIFAlbumsWeb.ModalComponent, modal_opts)
+    live_component(AIFAlbumsWeb.ModalComponent, modal_opts)
   end
 end
