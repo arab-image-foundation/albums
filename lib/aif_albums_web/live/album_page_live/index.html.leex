@@ -1,0 +1,23 @@
+<h1>Listing Album pages</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Aifid</th>
+      <th>Height</th>
+      <th>Width</th>
+      <th>Inscriptions</th>
+    </tr>
+  </thead>
+  <tbody id="album_pages">
+    <%= for album_page <- @album_pages do %>
+      <tr id="album_page-<%= album_page.id %>">
+        <td><%= album_page.aifid %></td>
+        <td><%= album_page.height %></td>
+        <td><%= album_page.width %></td>
+        <td><%= album_page.inscriptions %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>

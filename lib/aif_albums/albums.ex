@@ -7,6 +7,7 @@ defmodule AIFAlbums.Albums do
   alias AIFAlbums.Repo
 
   alias AIFAlbums.Albums.Album
+  alias AIFAlbums.AlbumPages.AlbumPage
 
   @doc """
   Returns the list of albums.
@@ -38,6 +39,21 @@ defmodule AIFAlbums.Albums do
   def get_album!(id), do: Repo.get!(Album, id)
 
   def get_album_with_collection(id), do: Repo.get!(Album, id) |> Repo.preload(:collection)
+
+  def get_album_with_collection_and_pages(id) do
+    album_pages_query =
+      from p in AlbumPage,
+        where: p.album_id == ^ id,
+        order_by: p.aifid
+
+    query =
+      from a in Album,
+        where: a.id == ^id,
+        preload: [album_pages: ^album_pages_query]
+
+    Repo.one!(query) |> Repo.preload(:collection)
+  end
+
 
   @doc """
   Creates a album.
