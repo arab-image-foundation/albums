@@ -10,12 +10,11 @@ defmodule AIFAlbumsWeb.AlbumLive.Show do
 
   @impl true
   def handle_params(%{"id" => id}, _, socket) do
+    album = Albums.get_album_with_collection(id)
+
     {:noreply,
      socket
-     |> assign(:page_title, page_title(socket.assigns.live_action))
-     |> assign(:album, Albums.get_album_with_collection(id))}
+     |> assign(:page_title, "Album #{album.aifid}")
+     |> assign(:album, album)}
   end
-
-  defp page_title(:show), do: "Show Album"
-  defp page_title(:edit), do: "Edit Album"
 end

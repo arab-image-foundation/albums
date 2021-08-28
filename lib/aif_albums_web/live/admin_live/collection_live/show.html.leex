@@ -6,10 +6,35 @@
     collection: @collection,
     return_to: Routes.admin_collection_show_path(@socket, :show, @collection) %>
 <% end %>
+<%= if @live_action in [:edit_album, :new_album] do %>
+  <%= live_modal AIFAlbumsWeb.AdminLive.AlbumLive.FormComponent,
+    id: :new,
+    album: @album,
+    collection: @collection,
+    title: @page_title,
+    action: @live_action,
+    return_to: Routes.admin_collection_show_path(@socket, :show, @collection) %>
+<% end %>
 
-<div class="collection-details">
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <%= live_redirect "Admin Home", to: Routes.admin_index_path(@socket, :index) %>
+    </li>
+    <li class="breadcrumb-item">
+      <%= live_redirect "Collections", to: Routes.admin_collection_index_path(@socket, :index) %>
+    </li>
+    <li class="breadcrumb-item" aria-current="page">
+      <%= @collection.name %>
+    </li>
+  </ol>
+</nav>
+
+<div class="admin collection-details">
   <h1>
     <%= @collection.name %> Collection
+    <%= live_patch "Edit", to: Routes.admin_collection_show_path(@socket, :edit, @collection),
+      class: "ms-2 btn btn-sm btn-secondary" %>
   </h1>
 
   <dl>
@@ -25,21 +50,38 @@
     <% end %>
   </dl>
 
-  <h2 class="mt-5 mb-4">Albums</h2>
-  <div class="collection-albums">
-    <%= for album <- @collection.albums do %>
-      <div class="">
-        <div id="collection-<%= album.id %>" class="card">
-          <img src="https://via.placeholder.com/800x450?text=<%= album.aifid %>"
-              alt="Album <%= album.aifid %>" class="card-img-top" />
-          <div class="card-body">
-            <%= live_redirect "#{album.aifid}",
-                  to: Routes.admin_album_show_path(@socket, :show, album),
-                  class: "fw-bold card-text stretched-link" %>
-            <p class="mt-2"><%= album.description %></p>
-          </div>
-        </div>
-      </div>
-    <% end %>
+  <div class="mt-5 mb-4 pt-3 d-flex justify-content-between align-items-center border-top">
+    <h2>Albums</h2>
+    <span>
+      <%= live_patch "New Album", to: Routes.admin_collection_show_path(@socket, :new_album, @collection),
+        class: "btn btn-sm btn-success" %>
+    </span>
   </div>
-<div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Number</th>
+        <th>Description</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="albums">
+      <%= for album <- @collection.albums do %>
+        <tr id="album-<%= album.id %>">
+          <td><%= album.aifid %></td>
+          <td><%= album.description %></td>
+          <td>
+            <div class="d-flex justify-content-end">
+              <%= live_redirect "Show", to: Routes.admin_album_show_path(@socket, :show, album),
+                    class: "me-3 btn btn-sm btn-primary" %>
+              <%= live_patch "Edit", to: Routes.admin_collection_show_path(@socket, :edit_album, @collection, album),
+                    class: "me-5 btn btn-sm btn-secondary" %>
+              <%= link "Delete", to: "#", phx_click: "delete", phx_value_id: album.id,
+                    data: [confirm: "Are you sure?"], class: "btn btn-sm btn-danger" %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

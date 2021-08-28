@@ -15,7 +15,7 @@ defmodule AIFAlbumsWeb.ModalComponent do
         <div class="modal-content">
           <%= live_patch "", to: @return_to, class: "btn-close",  aria_label: "Close" %>
           <div class="modal-body">
-            <%= live_component @socket, @component, @opts %>
+            <%= live_component @component, @opts %>
           </div>
         </div>
       </div>
