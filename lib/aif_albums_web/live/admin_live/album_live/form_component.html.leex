@@ -30,11 +30,11 @@
 
   <%= input f, :photographer, group_class: "my-3" %>
 
+  <%= label f, :date, class: "form-label d-block" %>
   <%= date_select f, :date, class: "form-select", builder: fn b -> %>
-      Date:
-        <%= b.(:day, [options: [nil | Enum.to_list(1..31)]]) %> /
-        <%= b.(:month, [options: [nil, {"January", 1}, {"Febraury", 2}, {"March", 3}, {"April", 4}, {"May", 5}, {"June", 6}, {"July", 7}, {"August", 8}, {"September", 9}, {"October", 10}, {"November", 11}, {"December", 12}]]) %> /
-        <%= b.(:year, [options: [nil | Enum.to_list(1900..2022)]]) %>
+        <%= b.(:day, [options: [{"—", nil} | Enum.to_list(1..31)]]) %> /
+        <%= b.(:month, [options: [{"—", nil}, {"January", 1}, {"Febraury", 2}, {"March", 3}, {"April", 4}, {"May", 5}, {"June", 6}, {"July", 7}, {"August", 8}, {"September", 9}, {"October", 10}, {"November", 11}, {"December", 12}]]) %> /
+        <%= b.(:year, [options: [{"—", nil} | Enum.to_list(1900..2022)]]) %>
   <% end %>
   <span class="ms-3">
     <%= error_tag f, :date %>
