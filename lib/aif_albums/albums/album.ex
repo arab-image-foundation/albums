@@ -38,5 +38,6 @@ defmodule AIFAlbums.Albums.Album do
                     :collection_id
                   ])
     |> validate_required([:aifid, :collection_id])
+    |> unique_constraint(:aifid, message: "An album with this number already exists")
   end
 end
