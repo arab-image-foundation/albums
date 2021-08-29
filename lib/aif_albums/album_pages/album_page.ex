@@ -18,5 +18,6 @@ defmodule AIFAlbums.AlbumPages.AlbumPage do
     album_page
     |> cast(attrs, [:aifid, :height, :width, :inscriptions, :album_id])
     |> validate_required([:aifid, :album_id])
+    |> unique_constraint(:aifid, message: "An album page with this number already exists")
   end
 end
