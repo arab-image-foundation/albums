@@ -6,7 +6,7 @@ defmodule AIFAlbumsWeb.AdminLive.CollectionLive.Index do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, :collections, list_collections())}
+    {:ok, assign(socket, :collections, list_collections(sort: %{sort_by: :aifid, sort_order: :asc}))}
   end
 
   @impl true
@@ -37,10 +37,10 @@ defmodule AIFAlbumsWeb.AdminLive.CollectionLive.Index do
     collection = Collections.get_collection!(id)
     {:ok, _} = Collections.delete_collection(collection)
 
-    {:noreply, assign(socket, :collections, list_collections())}
+    {:noreply, assign(socket, :collections, list_collections(sort: %{sort_by: :aifid, sort_order: :asc}))}
   end
 
-  defp list_collections do
-    Collections.list_collections()
+  defp list_collections(criteria) do
+    Collections.list_collections(criteria)
   end
 end
