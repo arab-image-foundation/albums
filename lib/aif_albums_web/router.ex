@@ -19,10 +19,10 @@ defmodule AIFAlbumsWeb.Router do
 
     live "/", PageLive, :index
 
-    live "/collections", CollectionLive.Index, :index
+    # live "/collections", CollectionLive.Index, :index
     live "/collections/:id", CollectionLive.Show, :show
 
-    live "/albums", AlbumLive.Index, :index
+    # live "/albums", AlbumLive.Index, :index
     live "/albums/:id", AlbumLive.Show, :show
     live "/albums/:album_aifid/browse/:page_aifid", AlbumLive.ShowPage, :show
 
@@ -36,18 +36,18 @@ defmodule AIFAlbumsWeb.Router do
     live "/admin/collections/:id/album/:album_id/edit", AdminLive.CollectionLive.Show, :edit_album
     live "/admin/collections/:id/album/new", AdminLive.CollectionLive.Show, :new_album
 
-    live "/admin/albums", AdminLive.AlbumLive.Index, :index
-    live "/admin/albums/new", AdminLive.AlbumLive.Index, :new
+    # live "/admin/albums", AdminLive.AlbumLive.Index, :index
+    # live "/admin/albums/new", AdminLive.AlbumLive.Index, :new
     live "/admin/albums/:id", AdminLive.AlbumLive.Show, :show
-    live "/admin/albums/:id/edit", AdminLive.AlbumLive.Index, :edit
+    # live "/admin/albums/:id/edit", AdminLive.AlbumLive.Index, :edit
     live "/admin/albums/:id/show/edit", AdminLive.AlbumLive.Show, :edit
     live "/admin/albums/:id/page/new", AdminLive.AlbumLive.Show, :new_album_page
 
-    live "/admin/album_pages/new", AdminLive.AlbumPageLive.Index, :new
-    live "/admin/album_pages/:id/edit", AdminLive.AlbumPageLive.Index, :edit
+    # live "/admin/album_pages/new", AdminLive.AlbumPageLive.Index, :new
+    # live "/admin/album_pages/:id/edit", AdminLive.AlbumPageLive.Index, :edit
 
     live "/admin/album_pages/:id", AdminLive.AlbumPageLive.Show, :show
-    live "/admin/album_pages/:id/show/edit", AdminLive.AlbumPageLive.Show, :edit
+    # live "/admin/album_pages/:id/show/edit", AdminLive.AlbumPageLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.
