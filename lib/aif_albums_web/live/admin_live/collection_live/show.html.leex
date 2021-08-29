@@ -6,13 +6,22 @@
     collection: @collection,
     return_to: Routes.admin_collection_show_path(@socket, :show, @collection) %>
 <% end %>
-<%= if @live_action in [:edit_album, :new_album] do %>
+<%= if @live_action in [:new_album] do %>
   <%= live_modal AIFAlbumsWeb.AdminLive.AlbumLive.FormComponent,
     id: :new,
     album: @album,
     collection: @collection,
     title: @page_title,
-    action: @live_action,
+    action: :new,
+    return_to: Routes.admin_collection_show_path(@socket, :show, @collection) %>
+<% end %>
+<%= if @live_action in [:edit_album] do %>
+  <%= live_modal AIFAlbumsWeb.AdminLive.AlbumLive.FormComponent,
+    id: @album.id,
+    album: @album,
+    collection: @collection,
+    title: @page_title,
+    action: :edit,
     return_to: Routes.admin_collection_show_path(@socket, :show, @collection) %>
 <% end %>
 
