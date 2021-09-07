@@ -58,7 +58,7 @@ config :aif_albums, AIFAlbumsWeb.Endpoint,
 config :aif_albums, AIFAlbumsWeb.Endpoint,
   live_reload: [
     patterns: [
-      ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
+      ~r"priv/static/[^uploads].*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
       ~r"lib/albums_web/(live|views)/.*(ex)$",
       ~r"lib/albums_web/templates/.*(eex)$"
