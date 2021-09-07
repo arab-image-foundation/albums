@@ -70,8 +70,10 @@ defmodule AIFAlbumsWeb.AdminLive.CollectionLive.FormComponent do
   end
 
   defp save_collection(socket, :new, collection_params) do
-    {completed, []} = uploaded_entries(socket, :thumbnail)
-    collection_params = put_thumbnail(socket, completed, collection_params)
+    {completed_thumbnail_uploads, []} = uploaded_entries(socket, :thumbnail)
+    {completed_cover_image_uploads, []} = uploaded_entries(socket, :cover_image)
+    collection_params = put_thumbnail(socket, completed_thumbnail_uploads, collection_params)
+    collection_params = put_cover_image(socket, completed_cover_image_uploads, collection_params)
     case Collections.create_collection(%Collection{}, collection_params, &consume_uploads(socket, &1)) do
       {:ok, _collection} ->
         {:noreply,
@@ -108,14 +110,14 @@ defmodule AIFAlbumsWeb.AdminLive.CollectionLive.FormComponent do
 
   def consume_uploads(socket, %Collection{} = collection) do
     consume_uploaded_entries(socket, :thumbnail, fn meta, entry ->
-      dest =
+      thumbnail_dest =
         Path.join([
           :code.priv_dir(:aif_albums),
           "static",
           "uploads",
           "#{entry.uuid}.jpg"
         ])
-      File.cp!(meta.path, dest)
+      File.cp!(meta.path, thumbnail_dest)
     end)
     consume_uploaded_entries(socket, :cover_image, fn meta, entry ->
       dest =

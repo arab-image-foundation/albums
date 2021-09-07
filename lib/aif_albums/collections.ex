@@ -121,6 +121,22 @@ defmodule AIFAlbums.Collections do
 
   """
   def delete_collection(%Collection{} = collection) do
+    thumbnail_url_path =
+      Path.join([
+        :code.priv_dir(:aif_albums),
+        "static",
+        collection.thumbnail_url
+    ])
+
+    cover_image_url_path =
+      Path.join([
+        :code.priv_dir(:aif_albums),
+        "static",
+        collection.cover_image_url
+    ])
+
+    File.rm!(thumbnail_url_path)
+    File.rm!(cover_image_url_path)
     Repo.delete(collection)
   end
 
