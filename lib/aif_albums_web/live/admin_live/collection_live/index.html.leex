@@ -28,6 +28,7 @@
     <tr>
       <th>Number</th>
       <th>Name</th>
+      <th>Cover Image</th>
       <th>Contract</th>
 
       <th></th>
@@ -38,6 +39,7 @@
       <tr id="collection-<%= collection.id %>">
         <td><%= collection.aifid %></td>
         <td><%= collection.name %></td>
+        <td><%= img_tag collection.thumbnail_url, height: 50 %></td>
         <td><%= collection.contract %></td>
 
         <td>

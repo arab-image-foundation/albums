@@ -67,18 +67,25 @@ defmodule AIFAlbums.Collections do
 
   ## Examples
 
-      iex> create_collection(%{field: value})
-      {:ok, %Collection{}}
+    iex> create_collection(%{field: value})
+    {:ok, %Collection{}}
 
-      iex> create_collection(%{field: bad_value})
-      {:error, %Ecto.Changeset{}}
+    iex> create_collection(%{field: bad_value})
+    {:error, %Ecto.Changeset{}}
 
   """
-  def create_collection(attrs \\ %{}) do
-    %Collection{}
+
+  def create_collection(%Collection{} = collection, attrs \\ %{}, after_save \\ &{:ok, &1}) do
+    collection
     |> Collection.changeset(attrs)
     |> Repo.insert()
+    |> after_save(after_save)
   end
+
+  defp after_save({:ok, collection}, func) do
+    {:ok, _post} = func.(collection)
+  end
+  defp after_save(error, _func), do: error
 
   @doc """
   Updates a collection.
@@ -92,10 +99,13 @@ defmodule AIFAlbums.Collections do
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_collection(%Collection{} = collection, attrs) do
+  def update_collection(%Collection{} = collection, attrs, after_save \\ &{:ok, &1}) do
+    IO.inspect(collection)
+    IO.inspect(attrs)
     collection
     |> Collection.changeset(attrs)
     |> Repo.update()
+    |> after_save(after_save)
   end
 
   @doc """
