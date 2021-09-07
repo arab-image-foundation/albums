@@ -19,8 +19,7 @@
     <%= for collection <- @collections do %>
       <div class="">
         <div id="collection-<%= collection.id %>" class="card">
-          <img src="https://via.placeholder.com/800x450?text=<%= collection.name %> collection"
-              alt="<%= collection.name %>" class="card-img-top" />
+          <%= img_tag collection.thumbnail_url, class: "card-img-top", alt: collection.name %>
           <div class="card-body">
             <%= live_redirect "#{collection.aifid} — #{collection.name} Collection",
                   to: Routes.collection_show_path(@socket, :show, collection),
