@@ -15,15 +15,19 @@
 
       <%= label f, :thumbnail, class: "form-label me-1" %>
       <div>
+            <a class="btn btn-secondary btn-sm"
+                        onclick="document.getElementsByClassName('thumbnail-upload')[0].click()">
+                  Choose new thumbnail
+            </a>
+            <%= error_tag f, :thumbnail_url %>
+
+      </div>
+      <div>
             <%= hidden_input f, :thumbnail_url %>
             <%= if @collection.thumbnail_url do %>
                   <%= img_tag @collection.thumbnail_url, class: "img-thumbnail mb-2", style: "height: 75px;" %>
             <% end %>
       </div>
-      <a class="btn btn-secondary btn-sm"
-                  onclick="document.getElementsByClassName('thumbnail-upload')[0].click()">
-            Choose new thumbnail
-      </a>
       <%= live_file_input @uploads.thumbnail, class: "d-none thumbnail-upload" %>
       <%= for entry <- @uploads.thumbnail.entries do %>
             <div class="d-flex align-items-center gap-2 mt-2">

@@ -44,7 +44,8 @@ defmodule AIFAlbumsWeb.AdminLive.CollectionLive.FormComponent do
   end
 
   defp save_collection(socket, :edit, collection_params) do
-    collection_params = put_thumbnail(socket, collection_params)
+    {completed, []} = uploaded_entries(socket, :thumbnail)
+    collection_params = put_thumbnail(socket, completed, collection_params)
     case Collections.update_collection(socket.assigns.collection, collection_params, &consume_thumbnail(socket, &1)) do
       {:ok, _collection} ->
         {:noreply,
@@ -58,8 +59,9 @@ defmodule AIFAlbumsWeb.AdminLive.CollectionLive.FormComponent do
   end
 
   defp save_collection(socket, :new, collection_params) do
-    collection = put_thumbnail(socket, %Collection{})
-    case Collections.create_collection(collection, collection_params, &consume_thumbnail(socket, &1)) do
+    {completed, []} = uploaded_entries(socket, :thumbnail)
+    collection_params = put_thumbnail(socket, completed, collection_params)
+    case Collections.create_collection(%Collection{}, collection_params, &consume_thumbnail(socket, &1)) do
       {:ok, _collection} ->
         {:noreply,
          socket
@@ -71,12 +73,10 @@ defmodule AIFAlbumsWeb.AdminLive.CollectionLive.FormComponent do
     end
   end
 
-  defp put_thumbnail(socket, collection_params) do
-    {completed, []} = uploaded_entries(socket, :thumbnail)
-
-    IO.inspect(uploaded_entries(socket, :thumbnail))
+  defp put_thumbnail(_socket, [], collection_params), do: collection_params
+  defp put_thumbnail(socket, completed_uploads, collection_params) do
     urls =
-      for entry <- completed do
+      for entry <- completed_uploads do
         Routes.static_path(socket, "/uploads/#{entry.uuid}.jpg")
       end
     [url | _ ] = urls
