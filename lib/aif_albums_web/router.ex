@@ -19,9 +19,6 @@ defmodule AIFAlbumsWeb.Router do
 
     live "/", PageLive, :index
 
-    # live "/collections", CollectionLive.Index, :index
-    live "/collections/:id", CollectionLive.Show, :show
-
     live "/albums", AlbumLive.Index, :index
     live "/albums/:id", AlbumLive.Show, :show
     live "/albums/:album_id/browse/:page_id", AlbumLive.ShowPage, :show
