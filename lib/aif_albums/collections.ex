@@ -100,8 +100,6 @@ defmodule AIFAlbums.Collections do
 
   """
   def update_collection(%Collection{} = collection, attrs, after_save \\ &{:ok, &1}) do
-    IO.inspect(collection)
-    IO.inspect(attrs)
     collection
     |> Collection.changeset(attrs)
     |> Repo.update()
