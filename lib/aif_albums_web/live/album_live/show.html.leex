@@ -1,84 +1,68 @@
-<%= if @live_action in [:edit] do %>
-  <%= live_modal AIFAlbumsWeb.AlbumLive.FormComponent,
-    id: @album.id,
-    title: @page_title,
-    action: @live_action,
-    album: @album,
-    return_to: Routes.album_show_path(@socket, :show, @album) %>
-<% end %>
-
 <h1>Album</h1>
 
-<div class="row">
-  <div class="col-12 col-md-6 order-2 order-md-1">
-    <dl>
-      <dt>
-        Album number:
-      </dt>
-      <dd>
-        <%= @album.aifid %>
-      </dd>
 
-      <dt>
-        Collection:
-      </dt>
-      <dd>
-        <%= live_redirect "#{@album.collection.aifid} — #{@album.collection.name}",
-              to: Routes.collection_show_path(@socket, :show, @album.collection) %>
-      </dd>
-
-      <%= if @album.description != nil do %>
-        <dt>Description:</dt>
-        <dd><%= @album.description %></dd>
-      <% end %>
-
-      <%= if @album.height != nil do %>
-        <dt>Height:</dt>
-        <dd><%= @album.height %> cm</dd>
-      <% end %>
-
-      <%= if @album.width != nil do %>
-        <dt>Width:</dt>
-        <dd><%= @album.width %> cm</dd>
-      <% end %>
-
-      <%= if @album.depth != nil do %>
-        <dt>Depth:</dt>
-        <dd><%= @album.depth %> cm</dd>
-      <% end %>
-
-      <%= if @album.condition != nil do %>
-        <dt>Condition:</dt>
-        <dd><%= @album.condition %></dd>
-      <% end %>
-
-      <%= if @album.inscriptions != nil do %>
-        <dt>Inscriptions:</dt>
-        <dd><%= @album.inscriptions %></dd>
-      <% end %>
-
-      <%= if @album.photographer != nil do %>
-        <dt>Photographer:</dt>
-        <dd><%= @album.photographer %></dd>
-      <% end %>
-
-      <%= if @album.date != nil do %>
-        <dt>Date:</dt>
-        <dd><%= Timex.format!(@album.date, "{Mfull} {YYYY}") %></dd>
-      <% end %>
-
-      <%= if @album.city != nil do %>
-        <dt>City:</dt>
-        <dd><%= @album.city %></dd>
-      <% end %>
-    </dl>
-
+<div class="row justify-content-end">
+  <div class="col-6">
+    <%= img_tag(@album.cover_image_url, width: "100%") %>
   </div>
-  <div class="col-12 col-md-6 order-1 order-md-2">
-    <img src="https://via.placeholder.com/800x450?text=<%= @album.aifid %> cover"
-          alt="Album <%= @album.aifid %>" class="card-img-top" />
+</div>
+
+<div class="row">
+  <div class="col">
+    <p>
+      Album x of y from
+      <%= live_redirect "#{@album.collection.name} collection (#{@album.collection.aifid})",
+            to: Routes.collection_show_path(@socket, :show, @album.collection.id) %>
+    </p>
+
+    <%= if @album.description != nil do %>
+      <h4>Description</h4>
+      <p><%= @album.description %></p>
+    <% end %>
+
+    <%= if @album.collection.credit_line != nil do %>
+      <h4>Preferred citation</h4>
+      <p><%= @album.collection.credit_line %></p>
+    <% end %>
+
+    <%= if @album.condition != nil do %>
+      <h4>Condition</h4>
+      <p><%= @album.condition %></p>
+    <% end %>
+
+    <%= if @album.height != nil do %>
+      <h4>Height</h4>
+      <p><%= @album.height %> cm</p>
+    <% end %>
+
+    <%= if @album.width != nil do %>
+      <h4>Wih4h:</h4>
+      <p><%= @album.width %> cm</p>
+    <% end %>
+
+    <%= if @album.depth != nil do %>
+      <h4>Depth:</h4>
+      <p><%= @album.depth %> cm</p>
+    <% end %>
+
+    <%= if @album.photographer != nil do %>
+      <h4>Photographer:</h4>
+      <p><%= @album.photographer %></p>
+    <% end %>
+
+    <%= if @album.date != nil do %>
+      <h4>Date:</h4>
+      <p><%= Timex.format!(@album.date, "{Mfull} {YYYY}") %></p>
+    <% end %>
+
+    <%= if @album.city != nil do %>
+      <h4>City:</h4>
+      <p><%= @album.city %></p>
+    <% end %>
+  </div>
+</div>
+<!--
 
     <%= live_redirect "View Content", to: Routes.album_show_page_path(@socket, :show, @album, :cover),
           class: "btn btn-primary w-100 my-4" %>
-  </div>
-</div>
+-->
