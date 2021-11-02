@@ -1,7 +1,7 @@
 defmodule AIFAlbumsWeb.PageLive do
   use AIFAlbumsWeb, :live_view
 
-  alias AIFAlbums.Collections
+  alias AIFAlbums.Albums
 
   @impl true
   def mount(_params, _session, socket) do
@@ -9,7 +9,7 @@ defmodule AIFAlbumsWeb.PageLive do
       socket
       |> assign(
         temporary_assign: [
-          collections: []
+          albums: []
         ]
       )
       |> assign(page_title: "AIF Albums")
@@ -21,19 +21,19 @@ defmodule AIFAlbumsWeb.PageLive do
 
   @impl true
   def handle_params(_params, _url, socket) do
-    collections =
-      list_collections(
+    albums =
+      list_albums(
         sort: %{sort_by: socket.assigns.sort_by, sort_order: socket.assigns.sort_order}
       )
 
     socket =
       socket
-      |> assign(collections: collections)
+      |> assign(albums: albums)
 
     {:noreply, socket}
   end
 
-  defp list_collections(criteria) do
-    Collections.list_collections(criteria)
+  defp list_albums(criteria) do
+    Albums.list_albums(criteria)
   end
 end

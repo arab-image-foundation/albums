@@ -10,21 +10,13 @@
     </p>
   </div>
   <hr class="bg-secondary">
-  <div class="row">
-    <div class="col">
-      <h2 class="mb-4">Collections</h2>
-    </div>
-  </div>
-  <div class="homepage-collections">
-    <%= for collection <- @collections do %>
+  <div class="homepage-albums">
+    <%= for album <- @albums do %>
       <div class="">
-        <div id="collection-<%= collection.id %>" class="card">
-          <%= img_tag collection.thumbnail_url, class: "card-img-top", alt: collection.name %>
-          <div class="card-body">
-            <%= live_redirect "#{collection.aifid} — #{collection.name} Collection",
-                  to: Routes.collection_show_path(@socket, :show, collection),
-                  class: "fw-bold card-text stretched-link" %>
-          </div>
+        <div id="album-<%= album.id %>">
+          <%= live_redirect to: Routes.album_show_path(@socket, :show, album) do %>
+            <%= img_tag album.cover_image_url, class: "card-img-top", alt: "Album #{album.aifid}" %>
+          <% end %>
         </div>
       </div>
     <% end %>
