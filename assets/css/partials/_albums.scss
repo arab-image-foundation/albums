@@ -1,0 +1,18 @@
+.albums-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+
+  @include media-breakpoint-up(md) { 
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  @include media-breakpoint-up(lg) { 
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  img {
+    width: 100%;
+  }
+}

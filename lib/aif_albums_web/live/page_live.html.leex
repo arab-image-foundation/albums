@@ -10,12 +10,12 @@
     </p>
   </div>
   <hr class="bg-secondary">
-  <div class="homepage-albums">
+  <div class="albums-grid">
     <%= for album <- @albums do %>
-      <div class="">
+      <div>
         <div id="album-<%= album.id %>">
           <%= live_redirect to: Routes.album_show_path(@socket, :show, album) do %>
-            <%= img_tag album.cover_image_url, class: "card-img-top", alt: "Album #{album.aifid}" %>
+            <%= img_tag album.cover_image_url, alt: "Album #{album.aifid}" %>
           <% end %>
         </div>
       </div>
