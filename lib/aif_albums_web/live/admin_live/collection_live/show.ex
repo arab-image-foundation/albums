@@ -34,4 +34,12 @@ defmodule AIFAlbumsWeb.AdminLive.CollectionLive.Show do
     |> assign(:page_title, "New Album")
     |> assign(:album, %Album{collection_id: socket.assigns.collection.id})
   end
+
+  @impl true
+  def handle_event("delete", %{"album-id" => album_id, "collection-id" => collection_id}, socket) do
+    album = Albums.get_album!(album_id)
+    {:ok, _} = Albums.delete_album(album)
+
+    {:noreply, assign(socket, :collections, Collections.get_collection_with_albums(collection_id))}
+  end
 end

@@ -85,7 +85,8 @@
                     class: "me-3 btn btn-sm btn-primary" %>
               <%= live_patch "Edit", to: Routes.admin_collection_show_path(@socket, :edit_album, @collection, album),
                     class: "me-5 btn btn-sm btn-secondary" %>
-              <%= link "Delete", to: "#", phx_click: "delete", phx_value_id: album.id,
+              <%= link "Delete", to: "#", phx_click: "delete", phx_value_album_id: album.id,
+                    phx_value_collection_id: @collection.id,
                     data: [confirm: "Are you sure?"], class: "btn btn-sm btn-danger" %>
             </div>
           </td>

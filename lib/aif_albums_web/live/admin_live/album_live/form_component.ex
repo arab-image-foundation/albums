@@ -70,7 +70,7 @@ defmodule AIFAlbumsWeb.AdminLive.AlbumLive.FormComponent do
   defp save_album(socket, :new, album_params) do
     {completed_cover_image_uploads, []} = uploaded_entries(socket, :cover_image)
     album_params = put_cover_image(socket, completed_cover_image_uploads, album_params)
-    case Albums.create_album(album_params, &consume_uploads(socket, &1)) do
+    case Albums.create_album(%Album{}, album_params, &consume_uploads(socket, &1)) do
       {:ok, _album} ->
         {:noreply,
          socket
