@@ -22,6 +22,17 @@ defmodule AIFAlbums.Albums do
     Repo.all(Album)
   end
 
+  def list_albums(criteria) when is_list(criteria) do
+    query = from a in Album
+
+    Enum.reduce(criteria, query, fn
+      {:sort, %{sort_by: sort_by, sort_order: sort_order}}, query ->
+        from q in query, order_by: [{^sort_order, ^sort_by}]
+    end)
+    |> Repo.all()
+  end
+
+
   @doc """
   Gets a single album.
 
@@ -67,11 +78,17 @@ defmodule AIFAlbums.Albums do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_album(attrs \\ %{}) do
-    %Album{}
+  def create_album(%Album{} = album, attrs \\ %{}, after_save \\ &{:ok, &1}) do
+    album
     |> Album.changeset(attrs)
     |> Repo.insert()
+    |> after_save(after_save)
   end
+
+  defp after_save({:ok, collection}, func) do
+    {:ok, _post} = func.(collection)
+  end
+  defp after_save(error, _func), do: error
 
   @doc """
   Updates a album.
@@ -85,10 +102,11 @@ defmodule AIFAlbums.Albums do
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_album(%Album{} = album, attrs) do
+  def update_album(%Album{} = album, attrs, after_save \\ &{:ok, &1}) do
     album
     |> Album.changeset(attrs)
     |> Repo.update()
+    |> after_save(after_save)
   end
 
   @doc """

@@ -22,9 +22,9 @@ defmodule AIFAlbumsWeb.Router do
     # live "/collections", CollectionLive.Index, :index
     live "/collections/:id", CollectionLive.Show, :show
 
-    # live "/albums", AlbumLive.Index, :index
+    live "/albums", AlbumLive.Index, :index
     live "/albums/:id", AlbumLive.Show, :show
-    live "/albums/:album_aifid/browse/:page_aifid", AlbumLive.ShowPage, :show
+    live "/albums/:album_id/browse/:page_id", AlbumLive.ShowPage, :show
 
     live "/admin", AdminLive.Index, :index
 

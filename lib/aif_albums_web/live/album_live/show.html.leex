@@ -77,6 +77,8 @@
   <div class="col-12 col-md-6 order-1 order-md-2">
     <img src="https://via.placeholder.com/800x450?text=<%= @album.aifid %> cover"
           alt="Album <%= @album.aifid %>" class="card-img-top" />
-    <a class="btn btn-primary w-100 my-4">View Content</a>
+
+    <%= live_redirect "View Content", to: Routes.album_show_page_path(@socket, :show, @album, :cover),
+          class: "btn btn-primary w-100 my-4" %>
   </div>
 </div>
