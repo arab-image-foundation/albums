@@ -7,6 +7,7 @@ defmodule AIFAlbums.AlbumPages.AlbumPage do
     field :height, :float
     field :inscriptions, :string
     field :width, :float
+    field :image_url, :string
 
     belongs_to :album, AIFAlbums.Albums.Album
 
@@ -16,8 +17,9 @@ defmodule AIFAlbums.AlbumPages.AlbumPage do
   @doc false
   def changeset(album_page, attrs) do
     album_page
-    |> cast(attrs, [:aifid, :height, :width, :inscriptions, :album_id])
+    |> cast(attrs, [:aifid, :height, :width, :inscriptions, :album_id, :image_url])
     |> validate_required([:aifid, :album_id])
+    |> validate_required(:image_url, message: "Album page must have an image")
     |> unique_constraint(:aifid, message: "An album page with this number already exists")
   end
 end
