@@ -1,9 +1,9 @@
-<h1 class="mb-4">Browse Album <%= @album.aifid %></h1>
-<h2>Page <%= @current_album_page.aifid %></h2>
+
 <div>
-  <img src="https://via.placeholder.com/1200x675?text=<%= @current_album_page.aifid %>"
-      alt="Album page <%= @current_album_page.aifid %>" width="100%"/>
+  <%= img_tag @current_album_page.image_url, width: "100%",
+      alt: "Album page #{@current_album_page.aifid}" %>
 </div>
+<!--
 <div class="d-flex gap-2 mt-3">
   <%= for album_page <- @album.album_pages do %>
     <div>
@@ -32,3 +32,4 @@
     </dl>
   </div>
 </div>
+-->

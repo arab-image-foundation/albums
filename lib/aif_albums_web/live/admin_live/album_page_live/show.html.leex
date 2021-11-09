@@ -1,11 +1,34 @@
 
-<h1>Show Album page</h1>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <%= live_redirect "Admin Home", to: Routes.admin_index_path(@socket, :index) %>
+    </li>
+    <li class="breadcrumb-item">
+      <%= live_redirect "Collections", to: Routes.admin_collection_index_path(@socket, :index) %>
+    </li>
+    <li class="breadcrumb-item">
+      <%= live_redirect "#{@album.collection.name} Collection", to: Routes.admin_collection_show_path(@socket, :show, @album.collection) %>
+    </li>
+    <li class="breadcrumb-item">
+      <%= live_redirect "Album #{@album.aifid}", to: Routes.admin_album_show_path(@socket, :show, @album.id) %>
+    </li>
+    <li class="breadcrumb-item" aria-current="page">
+      Page <%= @album_page.aifid %>
+    </li>
+  </ol>
+</nav>
 
 <ul>
 
   <li>
     <strong>Aifid:</strong>
     <%= @album_page.aifid %>
+  </li>
+
+  <li>
+    <strong>image:</strong>
+    <%= img_tag @album_page.image_url, height: "150" %>
   </li>
 
   <li>

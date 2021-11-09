@@ -2,6 +2,7 @@ defmodule AIFAlbumsWeb.AdminLive.AlbumLive.Show do
   use AIFAlbumsWeb, :live_view
 
   alias AIFAlbums.Albums
+  alias AIFAlbums.AlbumPages
   alias AIFAlbums.AlbumPages.AlbumPage
 
   @impl true
@@ -21,18 +22,24 @@ defmodule AIFAlbumsWeb.AdminLive.AlbumLive.Show do
 
   defp apply_action(socket, :show, _params), do: socket |> assign(:page_title, "Show Album")
   defp apply_action(socket, :edit, _params), do: socket |> assign(:page_title, "Edit Album")
-  # defp apply_action(socket, :edit_album_page, %{"page_id" => page_id}) do
-  #   album_page = AlbumPages.get_album_page!(page_id)
+  defp apply_action(socket, :edit_album_page, %{"page_id" => page_id}) do
+    album_page = AlbumPages.get_album_page!(page_id)
 
-  #   socket
-  #   |> assign(:page_title, "Edit Page")
-  #   |> assign(:album_page, album_page)
-  # end
+    socket
+    |> assign(:page_title, "Edit Page")
+    |> assign(:album_page, album_page)
+  end
   defp apply_action(socket, :new_album_page, _params) do
     socket
     |> assign(:page_title, "New Page for Album #{socket.assigns.album.aifid}")
     |> assign(:album_page, %AlbumPage{album_id: socket.assigns.album.id})
   end
 
+  @impl true
+  def handle_event("delete", %{"album-page-id" => album_page_id, "album-id" => album_id}, socket) do
+    album_page = AlbumPages.get_album_page!(album_page_id)
+    {:ok, _} = AlbumPages.delete_album_page(album_page)
 
+    {:noreply, assign(socket, :album, Albums.get_album_with_collection_and_pages(album_id))}
+  end
 end

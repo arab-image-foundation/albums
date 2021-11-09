@@ -1,14 +1,13 @@
-<h1>Album</h1>
-
-
-<div class="row justify-content-end">
-  <div class="col-6">
-    <%= img_tag(@album.cover_image_url, width: "100%") %>
+<div class="pt-4">
+  <div class="row justify-content-end">
+    <div class="col-6">
+      <%= img_tag(@album.cover_image_url, width: "100%") %>
+      <%= live_redirect "View Content", to: Routes.album_show_page_path(@socket, :show, @album, :cover),
+            class: "btn btn-primary w-100 my-4" %>
+    </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="col">
+  <div class="pt-3">
     <p>
       Album x of y from
       <%= live_redirect "#{@album.collection.name} collection (#{@album.collection.aifid})",
@@ -36,7 +35,7 @@
     <% end %>
 
     <%= if @album.width != nil do %>
-      <h4>Wih4h:</h4>
+      <h4>Width:</h4>
       <p><%= @album.width %> cm</p>
     <% end %>
 
@@ -61,8 +60,3 @@
     <% end %>
   </div>
 </div>
-<!--
-
-    <%= live_redirect "View Content", to: Routes.album_show_page_path(@socket, :show, @album, :cover),
-          class: "btn btn-primary w-100 my-4" %>
--->

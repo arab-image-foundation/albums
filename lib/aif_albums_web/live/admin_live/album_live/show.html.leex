@@ -33,6 +33,15 @@
     action: :new,
     return_to: Routes.admin_album_show_path(@socket, :show, @album) %>
 <% end %>
+<%= if @live_action in [:edit_album_page] do %>
+  <%= live_modal AIFAlbumsWeb.AdminLive.AlbumPageLive.FormComponent,
+    id: @album_page.id,
+    album_page: @album_page,
+    album: @album,
+    title: @page_title,
+    action: :edit,
+    return_to: Routes.admin_album_show_path(@socket, :show, @album) %>
+<% end %>
 
 <div class="admin-albums-show">
   <h1 class="mb-4">
@@ -50,6 +59,15 @@
       <div class="col-10">
         <%= live_redirect "#{@album.collection.aifid} — #{@album.collection.name}",
               to: Routes.admin_collection_show_path(@socket, :show, @album.collection) %>
+      </div>
+    </div>
+
+    <div class="row mb-2 border-top pt-1">
+      <div class="col-2 fw-bold">
+        Cover Image:
+      </div>
+      <div class="col-10">
+        <%= img_tag @album.cover_image_url, height: "100", alt: "Album #{@album.aifid}" %>
       </div>
     </div>
 
@@ -194,17 +212,16 @@
             <%= album_page.aifid %>
           </td>
           <td>
-            <img src="https://via.placeholder.com/80x45?text=<%= album_page.aifid %>"
-                  alt="Page <%= album_page.aifid %>" />
+            <%= img_tag album_page.image_url, alt: "Page #{album_page.aifid}", height: "80px" %>
           </td>
           <td class="align-middle">
             <div class="d-flex justify-content-end">
               <%= live_redirect "Show", to: Routes.admin_album_page_show_path(@socket, :show, album_page),
                     class: "me-3 btn btn-sm btn-primary" %>
-              <%# <%= live_patch "Edit", to: Routes.admin_album_show_path(@socket, :edit_album_page, @album, album_page),
+              <%= live_patch "Edit", to: Routes.admin_album_show_path(@socket, :edit_album_page, @album, album_page),
                     class: "me-5 btn btn-sm btn-secondary" %>
-              <%= link "Delete", to: "#", phx_click: "delete", phx_value_id: album_page.id,
-                    data: [confirm: "Are you sure?"], class: "btn btn-sm btn-danger" %>
+              <%= link "Delete", to: "#", phx_click: "delete", phx_value_album_page_id: album_page.id,
+                    phx_value_album_id: @album.id, data: [confirm: "Are you sure?"], class: "btn btn-sm btn-danger" %>
             </div>
           </td>
         </tr>

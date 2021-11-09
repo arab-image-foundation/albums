@@ -37,6 +37,11 @@ defmodule AIFAlbums.AlbumPages do
   """
   def get_album_page!(id), do: Repo.get!(AlbumPage, id)
 
+  def get_album_page_with_album!(id) do
+    Repo.get!(AlbumPage, id)
+    |> Repo.preload(:album)
+  end
+
   @doc """
   Creates a album_page.
 
@@ -49,10 +54,11 @@ defmodule AIFAlbums.AlbumPages do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_album_page(attrs \\ %{}) do
+  def create_album_page(attrs \\ %{}, after_save \\ &{:ok, &1}) do
     %AlbumPage{}
     |> AlbumPage.changeset(attrs)
     |> Repo.insert()
+    |> after_save(after_save)
   end
 
   @doc """
@@ -67,11 +73,17 @@ defmodule AIFAlbums.AlbumPages do
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_album_page(%AlbumPage{} = album_page, attrs) do
+  def update_album_page(%AlbumPage{} = album_page, attrs, after_save \\ &{:ok, &1}) do
     album_page
     |> AlbumPage.changeset(attrs)
     |> Repo.update()
+    |> after_save(after_save)
   end
+
+  defp after_save({:ok, collection}, func) do
+    {:ok, _post} = func.(collection)
+  end
+  defp after_save(error, _func), do: error
 
   @doc """
   Deletes a album_page.

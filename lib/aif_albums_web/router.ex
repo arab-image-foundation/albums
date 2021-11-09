@@ -41,6 +41,7 @@ defmodule AIFAlbumsWeb.Router do
     # live "/admin/albums/:id/edit", AdminLive.AlbumLive.Index, :edit
     live "/admin/albums/:id/show/edit", AdminLive.AlbumLive.Show, :edit
     live "/admin/albums/:id/page/new", AdminLive.AlbumLive.Show, :new_album_page
+    live "/admin/albums/:id/page/:page_id/edit", AdminLive.AlbumLive.Show, :edit_album_page
 
     # live "/admin/album_pages/new", AdminLive.AlbumPageLive.Index, :new
     # live "/admin/album_pages/:id/edit", AdminLive.AlbumPageLive.Index, :edit
