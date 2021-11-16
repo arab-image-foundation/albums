@@ -1,16 +1,26 @@
 defmodule AIFAlbumsWeb.AlbumLive.ShowPage do
   use AIFAlbumsWeb, :live_view
 
+  alias AIFAlbumsWeb.AlbumLive.AlbumSpreadComponent
   alias AIFAlbums.Albums
 
   @impl true
   def mount(_params, _session, socket) do
+    socket
+    |> assign(
+      temporary_assign: [
+        album_pages_list: []
+      ])
+    |> assign(page_title: "Album")
+
     {:ok, socket}
   end
 
   @impl true
   def handle_params(%{"album_id" => album_id, "page_id" => page_id}, _, socket) do
     album = Albums.get_album_with_collection_and_pages(album_id)
+
+    IO.inspect(album.album_pages)
     current_album_page =
       case page_id do
         "cover" ->
