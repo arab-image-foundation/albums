@@ -1,11 +1,11 @@
-defmodule AIFAlbumsWeb.AlbumPageLive.Index do
+defmodule AIFAlbumsWeb.AlbumSpreadLive.Index do
   use AIFAlbumsWeb, :live_view
 
-  alias AIFAlbums.AlbumPages
+  alias AIFAlbums.AlbumSpreads
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, :album_pages, list_album_pages())}
+    {:ok, assign(socket, :album_spreads, list_album_spreads())}
   end
 
   @impl true
@@ -16,10 +16,10 @@ defmodule AIFAlbumsWeb.AlbumPageLive.Index do
   defp apply_action(socket, :index, _params) do
     socket
     |> assign(:page_title, "Listing Album pages")
-    |> assign(:album_page, nil)
+    |> assign(:album_spread, nil)
   end
 
-  defp list_album_pages do
-    AlbumPages.list_album_pages()
+  defp list_album_spreads do
+    AlbumSpreads.list_album_spreads()
   end
 end

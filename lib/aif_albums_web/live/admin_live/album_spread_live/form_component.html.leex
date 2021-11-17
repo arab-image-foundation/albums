@@ -1,7 +1,7 @@
 <h2><%= @title %></h2>
 
 <%= f = form_for @changeset, "#",
-  id: "album_page-form",
+  id: "album_spread-form",
   phx_target: @myself,
   phx_change: "validate",
   novalidate: true,
@@ -10,7 +10,7 @@
   <%= hidden_input f, :album_id, value: @album.id %>
 
   <%= input f, :aifid, group_class: "my-3", label: "Number",
-      input_opts: [placeholder: "Album Page number"] %>
+      input_opts: [placeholder: "Album Spread number"] %>
 
   <div>
         <a class="btn btn-secondary btn-sm"

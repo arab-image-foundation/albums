@@ -1,8 +1,8 @@
-defmodule AIFAlbumsWeb.AdminLive.AlbumPageLive.FormComponent do
+defmodule AIFAlbumsWeb.AdminLive.AlbumSpreadLive.FormComponent do
   use AIFAlbumsWeb, :live_component
 
-  alias AIFAlbums.AlbumPages
-  alias AIFAlbums.AlbumPages.AlbumPage
+  alias AIFAlbums.AlbumSpreads
+  alias AIFAlbums.AlbumSpreads.AlbumSpread
 
   @impl true
   def mount(socket) do
@@ -17,8 +17,8 @@ defmodule AIFAlbumsWeb.AdminLive.AlbumPageLive.FormComponent do
   end
 
   @impl true
-  def update(%{album_page: album_page} = assigns, socket) do
-    changeset = AlbumPages.change_album_page(album_page)
+  def update(%{album_spread: album_spread} = assigns, socket) do
+    changeset = AlbumSpreads.change_album_spread(album_spread)
 
     {:ok,
      socket
@@ -27,31 +27,31 @@ defmodule AIFAlbumsWeb.AdminLive.AlbumPageLive.FormComponent do
   end
 
   @impl true
-  def handle_event("validate", %{"album_page" => album_page_params}, socket) do
+  def handle_event("validate", %{"album_spread" => album_spread_params}, socket) do
     changeset =
-      socket.assigns.album_page
-      |> AlbumPages.change_album_page(album_page_params)
+      socket.assigns.album_spread
+      |> AlbumSpreads.change_album_spread(album_spread_params)
       |> Map.put(:action, :validate)
 
     {:noreply, assign(socket, :changeset, changeset)}
   end
 
-  def handle_event("save", %{"album_page" => album_page_params}, socket) do
-    save_album_page(socket, socket.assigns.action, album_page_params)
+  def handle_event("save", %{"album_spread" => album_spread_params}, socket) do
+    save_album_spread(socket, socket.assigns.action, album_spread_params)
   end
 
-  defp save_album_page(socket, :edit, album_page_params) do
+  defp save_album_spread(socket, :edit, album_spread_params) do
     {completed_image_uploads, []} = uploaded_entries(socket, :image)
-    album_page_params = put_image(socket, completed_image_uploads, album_page_params)
-    case AlbumPages.update_album_page(
-                                        socket.assigns.album_page,
-                                        album_page_params,
+    album_spread_params = put_image(socket, completed_image_uploads, album_spread_params)
+    case AlbumSpreads.update_album_spread(
+                                        socket.assigns.album_spread,
+                                        album_spread_params,
                                         &consume_uploads(socket, &1)
                                       ) do
-      {:ok, _album_page} ->
+      {:ok, _album_spread} ->
         {:noreply,
          socket
-         |> put_flash(:info, "Album page updated successfully")
+         |> put_flash(:info, "Album spread updated successfully")
          |> push_redirect(to: socket.assigns.return_to)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
@@ -59,14 +59,14 @@ defmodule AIFAlbumsWeb.AdminLive.AlbumPageLive.FormComponent do
     end
   end
 
-  defp save_album_page(socket, :new, album_page_params) do
+  defp save_album_spread(socket, :new, album_spread_params) do
     {completed_image_uploads, []} = uploaded_entries(socket, :image)
-    album_page_params = put_image(socket, completed_image_uploads, album_page_params)
-    case AlbumPages.create_album_page(album_page_params, &consume_uploads(socket, &1)) do
-      {:ok, _album_page} ->
+    album_spread_params = put_image(socket, completed_image_uploads, album_spread_params)
+    case AlbumSpreads.create_album_spread(album_spread_params, &consume_uploads(socket, &1)) do
+      {:ok, _album_spread} ->
         {:noreply,
          socket
-         |> put_flash(:info, "Album page created successfully")
+         |> put_flash(:info, "Album spread created successfully")
          |> push_redirect(to: socket.assigns.return_to)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
@@ -74,18 +74,18 @@ defmodule AIFAlbumsWeb.AdminLive.AlbumPageLive.FormComponent do
     end
   end
 
-  defp put_image(_socket, [], album_page_params), do: album_page_params
-  defp put_image(socket, completed_image_uploads, album_page_params) do
+  defp put_image(_socket, [], album_spread_params), do: album_spread_params
+  defp put_image(socket, completed_image_uploads, album_spread_params) do
     urls =
       for entry <- completed_image_uploads do
         Routes.static_path(socket, "/uploads/#{entry.uuid}.jpg")
       end
     [url | _ ] = urls
 
-    Map.merge(album_page_params, %{"image_url" => url})
+    Map.merge(album_spread_params, %{"image_url" => url})
   end
 
-  def consume_uploads(socket, %AlbumPage{} = album) do
+  def consume_uploads(socket, %AlbumSpread{} = album) do
     consume_uploaded_entries(socket, :image, fn meta, entry ->
       dest =
         Path.join([

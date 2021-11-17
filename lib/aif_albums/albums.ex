@@ -7,7 +7,7 @@ defmodule AIFAlbums.Albums do
   alias AIFAlbums.Repo
 
   alias AIFAlbums.Albums.Album
-  alias AIFAlbums.AlbumPages.AlbumPage
+  alias AIFAlbums.AlbumSpreads.AlbumSpread
 
   @doc """
   Returns the list of albums.
@@ -51,16 +51,16 @@ defmodule AIFAlbums.Albums do
 
   def get_album_with_collection(id), do: Repo.get!(Album, id) |> Repo.preload(:collection)
 
-  def get_album_with_collection_and_pages(id) do
-    album_pages_query =
-      from p in AlbumPage,
-        where: p.album_id == ^ id,
-        order_by: p.aifid
+  def get_album_with_collection_and_spreads(id) do
+    album_spreads_query =
+      from s in AlbumSpread,
+        where: s.album_id == ^ id,
+        order_by: s.aifid
 
     query =
       from a in Album,
         where: a.id == ^id,
-        preload: [album_pages: ^album_pages_query]
+        preload: [album_spreads: ^album_spreads_query]
 
     Repo.one!(query) |> Repo.preload(:collection)
   end

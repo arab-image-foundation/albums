@@ -1,14 +1,15 @@
 defmodule AIFAlbumsWeb.AlbumLive.AlbumSpreadComponent do
   use AIFAlbumsWeb, :live_component
 
-  alias AIFAlbums.AlbumPages
+  alias AIFAlbums.AlbumSpreads
 
   def mount(socket) do
+    album_spreads = []
     {:ok, socket}
   end
 
   def update(%{
-                current_album_page: current_album_page,
+                current_album_spread: current_album_spread,
                 album: album
               } = assigns, socket) do
 
@@ -17,7 +18,7 @@ defmodule AIFAlbumsWeb.AlbumLive.AlbumSpreadComponent do
       socket
       |> assign(assigns)
       |> assign(:album, album)
-      |> assign(:current_album_page, current_album_page)
+      |> assign(:current_album_spread, current_album_spread)
     }
   end
 end

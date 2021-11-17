@@ -14,7 +14,7 @@
     <%= for album <- @albums do %>
       <div>
         <div id="album-<%= album.id %>">
-          <%= live_redirect to: Routes.album_show_page_path(@socket, :show, album, :cover) do %>
+          <%= live_redirect to: Routes.album_show_spread_path(@socket, :show, album, :cover) do %>
             <%= img_tag album.cover_image_url, alt: "Album #{album.aifid}" %>
           <% end %>
         </div>

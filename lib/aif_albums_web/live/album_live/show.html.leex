@@ -2,7 +2,7 @@
   <div class="row justify-content-end">
     <div class="col-6">
       <%= img_tag(@album.cover_image_url, width: "100%") %>
-      <%= live_redirect "View Content", to: Routes.album_show_page_path(@socket, :show, @album, :cover),
+      <%= live_redirect "View Content", to: Routes.album_show_spread_path(@socket, :show, @album, :cover),
             class: "btn btn-primary w-100 my-4" %>
     </div>
   </div>

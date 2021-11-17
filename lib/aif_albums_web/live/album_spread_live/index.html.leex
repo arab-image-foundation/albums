@@ -1,0 +1,23 @@
+<h1>Listing Album spreads</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Aifid</th>
+      <th>Height</th>
+      <th>Width</th>
+      <th>Inscriptions</th>
+    </tr>
+  </thead>
+  <tbody id="album_spreads">
+    <%= for album_spread <- @album_spreads do %>
+      <tr id="album_spread-<%= album_spread.id %>">
+        <td><%= album_spread.aifid %></td>
+        <td><%= album_spread.height %></td>
+        <td><%= album_spread.width %></td>
+        <td><%= album_spread.inscriptions %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>

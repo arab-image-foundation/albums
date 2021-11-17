@@ -13,8 +13,8 @@
     <li class="breadcrumb-item">
       <%= live_redirect "Album #{@album.aifid}", to: Routes.admin_album_show_path(@socket, :show, @album.id) %>
     </li>
-    <li class="breadcrumb-item" aria-current="page">
-      Page <%= @album_page.aifid %>
+    <li class="breadcrumb-item" aria-current="spread">
+      Spread <%= @album_spread.aifid %>
     </li>
   </ol>
 </nav>
@@ -23,27 +23,27 @@
 
   <li>
     <strong>Aifid:</strong>
-    <%= @album_page.aifid %>
+    <%= @album_spread.aifid %>
   </li>
 
   <li>
     <strong>image:</strong>
-    <%= img_tag @album_page.image_url, height: "150" %>
+    <%= img_tag @album_spread.image_url, height: "150" %>
   </li>
 
   <li>
     <strong>Height:</strong>
-    <%= @album_page.height %>
+    <%= @album_spread.height %>
   </li>
 
   <li>
     <strong>Width:</strong>
-    <%= @album_page.width %>
+    <%= @album_spread.width %>
   </li>
 
   <li>
     <strong>Inscriptions:</strong>
-    <%= @album_page.inscriptions %>
+    <%= @album_spread.inscriptions %>
   </li>
 
 </ul>
