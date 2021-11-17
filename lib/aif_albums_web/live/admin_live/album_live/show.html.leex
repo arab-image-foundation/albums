@@ -19,18 +19,27 @@
 <%= if @live_action in [:edit] do %>
   <%= live_modal AIFAlbumsWeb.AdminLive.AlbumLive.FormComponent,
     id: @album.id,
-    title: @page_title,
+    title: @spread_title,
     action: @live_action,
     album: @album,
     return_to: Routes.admin_album_show_path(@socket, :show, @album) %>
 <% end %>
-<%= if @live_action in [:new_album_page] do %>
-  <%= live_modal AIFAlbumsWeb.AdminLive.AlbumPageLive.FormComponent,
+<%= if @live_action in [:new_album_spread] do %>
+  <%= live_modal AIFAlbumsWeb.AdminLive.AlbumSpreadLive.FormComponent,
     id: :new,
-    album_page: @album_page,
+    album_spread: @album_spread,
     album: @album,
     title: @page_title,
     action: :new,
+    return_to: Routes.admin_album_show_path(@socket, :show, @album) %>
+<% end %>
+<%= if @live_action in [:edit_album_spread] do %>
+  <%= live_modal AIFAlbumsWeb.AdminLive.AlbumSpreadLive.FormComponent,
+    id: @album_spread.id,
+    album_spread: @album_spread,
+    album: @album,
+    title: @page_title,
+    action: :edit,
     return_to: Routes.admin_album_show_path(@socket, :show, @album) %>
 <% end %>
 
@@ -50,6 +59,15 @@
       <div class="col-10">
         <%= live_redirect "#{@album.collection.aifid} — #{@album.collection.name}",
               to: Routes.admin_collection_show_path(@socket, :show, @album.collection) %>
+      </div>
+    </div>
+
+    <div class="row mb-2 border-top pt-1">
+      <div class="col-2 fw-bold">
+        Cover Image:
+      </div>
+      <div class="col-10">
+        <%= img_tag @album.cover_image_url, height: "100", alt: "Album #{@album.aifid}" %>
       </div>
     </div>
 
@@ -173,10 +191,10 @@
     </div>
   </div>
 
-  <div class="album-pages mt-5 border-top border-3">
+  <div class="album-spreads mt-5 border-top border-3">
     <div class="d-flex justify-content-between align-items-center py-3">
-      <h2>Pages</h2>
-      <span><%= live_patch "New Album Page", to: Routes.admin_album_show_path(@socket, :new_album_page, @album), class: "btn btn-success" %></span>
+      <h2>Spreads</h2>
+      <span><%= live_patch "New Album Spread", to: Routes.admin_album_show_path(@socket, :new_album_spread, @album), class: "btn btn-success" %></span>
     </div>
   </div>
   <table class="table">
@@ -188,23 +206,22 @@
       </tr>
     </thead>
     <tbody id="albums">
-      <%= for album_page <- @album.album_pages do %>
-        <tr id="album_page-<%= album_page.id %>">
+      <%= for album_spread <- @album.album_spreads do %>
+        <tr id="album_spread-<%= album_spread.id %>">
           <td class="align-middle">
-            <%= album_page.aifid %>
+            <%= album_spread.aifid %>
           </td>
           <td>
-            <img src="https://via.placeholder.com/80x45?text=<%= album_page.aifid %>"
-                  alt="Page <%= album_page.aifid %>" />
+            <%= img_tag album_spread.image_url, alt: "Spread #{album_spread.aifid}", height: "80px" %>
           </td>
           <td class="align-middle">
             <div class="d-flex justify-content-end">
-              <%= live_redirect "Show", to: Routes.admin_album_page_show_path(@socket, :show, album_page),
+              <%= live_redirect "Show", to: Routes.admin_album_spread_show_path(@socket, :show, album_spread),
                     class: "me-3 btn btn-sm btn-primary" %>
-              <%# <%= live_patch "Edit", to: Routes.admin_album_show_path(@socket, :edit_album_page, @album, album_page),
+              <%= live_patch "Edit", to: Routes.admin_album_show_path(@socket, :edit_album_spread, @album, album_spread),
                     class: "me-5 btn btn-sm btn-secondary" %>
-              <%= link "Delete", to: "#", phx_click: "delete", phx_value_id: album_page.id,
-                    data: [confirm: "Are you sure?"], class: "btn btn-sm btn-danger" %>
+              <%= link "Delete", to: "#", phx_click: "delete", phx_value_album_spread_id: album_spread.id,
+                    phx_value_album_id: @album.id, data: [confirm: "Are you sure?"], class: "btn btn-sm btn-danger" %>
             </div>
           </td>
         </tr>

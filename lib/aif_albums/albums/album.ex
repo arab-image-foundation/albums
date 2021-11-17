@@ -18,7 +18,7 @@ defmodule AIFAlbums.Albums.Album do
 
     belongs_to :collection, AIFAlbums.Collections.Collection
 
-    has_many :album_pages, AIFAlbums.AlbumPages.AlbumPage
+    has_many :album_spreads, AIFAlbums.AlbumSpreads.AlbumSpread
 
     timestamps()
   end

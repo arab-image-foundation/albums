@@ -1,0 +1,66 @@
+<div id="spread-show">
+  <div class="d-flex justify-content-between">
+    <div class="align-self-center">
+      <%= if @previous_spread_id != nil do %>
+        <%= live_patch to: Routes.album_show_spread_path(@socket, :show, @album, @previous_spread_id) do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+          </svg>
+        <% end %>
+      <% else %>
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+        </svg>
+      <% end %>
+    </div>
+
+    <%= live_component @socket,
+          AlbumSpreadComponent,
+          current_album_spread: @current_album_spread,
+          album: @album %>
+
+    <div class="align-self-center">
+      <%= if @next_spread_id != nil do %>
+        <%= live_patch to: Routes.album_show_spread_path(@socket, :show, @album, @next_spread_id) do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+          </svg>
+        <% end %>
+      <% else %>
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+        </svg>
+      <% end %>
+    </div>
+  </div>
+</div>
+<!--
+<div class="d-flex gap-2 mt-3">
+  <%= for album_spread <- @album.album_spreads do %>
+    <div>
+      <%= live_patch to: Routes.album_show_spread_path(@socket, :show, @album, album_spread) do %>
+        <img src="https://via.placeholder.com/160x90?text=<%= album_spread.aifid %>"
+            alt="Album spread <%= album_spread.aifid %>" />
+      <% end %>
+    </div>
+  <% end %>
+</div>
+<div class="row">
+  <div class="col-12 col-md-6 order-2 order-md-1">
+    <dl>
+      <%= if @current_album_spread.inscriptions != nil do %>
+        <dt>Inscriptions:</dt>
+        <dd><%= @current_album_spread.inscriptions %> cm</dd>
+      <% end %>
+      <%= if @current_album_spread.height != nil do %>
+        <dt>Height:</dt>
+        <dd><%= @current_album_spread.height %> cm</dd>
+      <% end %>
+      <%= if @current_album_spread.width != nil do %>
+        <dt>Width:</dt>
+        <dd><%= @current_album_spread.width %> cm</dd>
+      <% end %>
+    </dl>
+  </div>
+</div>
+-->

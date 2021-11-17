@@ -1,8 +1,8 @@
-defmodule AIFAlbums.Repo.Migrations.CreateAlbumPages do
+defmodule AIFAlbums.Repo.Migrations.CreateAlbumSpreads do
   use Ecto.Migration
 
   def change do
-    create table(:album_pages) do
+    create table(:album_spreads) do
       add :aifid, :string
       add :height, :float
       add :width, :float
@@ -13,7 +13,7 @@ defmodule AIFAlbums.Repo.Migrations.CreateAlbumPages do
       timestamps()
     end
 
-    create unique_index(:album_pages, [:aifid])
+    create unique_index(:album_spreads, [:aifid])
 
   end
 end
