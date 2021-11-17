@@ -4,7 +4,7 @@ defmodule AIFAlbums.MixProject do
   def project do
     [
       app: :aif_albums,
-      version: "2021.0.2.1",
+      version: "2021.0.3",
       elixir: "~> 1.7",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
