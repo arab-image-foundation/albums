@@ -1,9 +1,9 @@
-defmodule Albums.MixProject do
+defmodule AIFAlbums.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :albums,
+      app: :aif_albums,
       version: "0.1.0",
       elixir: "~> 1.7",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -19,7 +19,7 @@ defmodule Albums.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {Albums.Application, []},
+      mod: {AIFAlbums.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end
@@ -46,6 +46,7 @@ defmodule Albums.MixProject do
       {:telemetry_poller, "~> 0.4"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
+      {:timex, "~> 3.0"},
       {:plug_cowboy, "~> 2.0"}
     ]
   end

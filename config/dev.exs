@@ -1,10 +1,10 @@
 use Mix.Config
 
 # Configure your database
-config :albums, Albums.Repo,
+config :aif_albums, AIFAlbums.Repo,
   username: "postgres",
   password: "postgres",
-  database: "albums_dev",
+  database: "aif_albums_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
@@ -15,7 +15,7 @@ config :albums, Albums.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
-config :albums, AlbumsWeb.Endpoint,
+config :aif_albums, AIFAlbumsWeb.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
@@ -55,10 +55,10 @@ config :albums, AlbumsWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :albums, AlbumsWeb.Endpoint,
+config :aif_albums, AIFAlbumsWeb.Endpoint,
   live_reload: [
     patterns: [
-      ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
+      ~r"priv/static/(?!uploads).*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
       ~r"lib/albums_web/(live|views)/.*(ex)$",
       ~r"lib/albums_web/templates/.*(eex)$"

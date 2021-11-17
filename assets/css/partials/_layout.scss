@@ -1,0 +1,11 @@
+html {
+  height: 100%;
+}
+
+body {
+  background-color: #ffffff;
+  height: 100%;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: min-content 1fr min-content;
+}

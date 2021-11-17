@@ -1,0 +1,62 @@
+<div class="pt-4">
+  <div class="row justify-content-end">
+    <div class="col-6">
+      <%= img_tag(@album.cover_image_url, width: "100%") %>
+      <%= live_redirect "View Content", to: Routes.album_show_spread_path(@socket, :show, @album, :cover),
+            class: "btn btn-primary w-100 my-4" %>
+    </div>
+  </div>
+
+  <div class="pt-3">
+    <p>
+      Album x of y from
+      <%= live_redirect "#{@album.collection.name} collection (#{@album.collection.aifid})",
+            to: Routes.collection_show_path(@socket, :show, @album.collection.id) %>
+    </p>
+
+    <%= if @album.description != nil do %>
+      <h4>Description</h4>
+      <p><%= @album.description %></p>
+    <% end %>
+
+    <%= if @album.collection.credit_line != nil do %>
+      <h4>Preferred citation</h4>
+      <p><%= @album.collection.credit_line %></p>
+    <% end %>
+
+    <%= if @album.condition != nil do %>
+      <h4>Condition</h4>
+      <p><%= @album.condition %></p>
+    <% end %>
+
+    <%= if @album.height != nil do %>
+      <h4>Height</h4>
+      <p><%= @album.height %> cm</p>
+    <% end %>
+
+    <%= if @album.width != nil do %>
+      <h4>Width:</h4>
+      <p><%= @album.width %> cm</p>
+    <% end %>
+
+    <%= if @album.depth != nil do %>
+      <h4>Depth:</h4>
+      <p><%= @album.depth %> cm</p>
+    <% end %>
+
+    <%= if @album.photographer != nil do %>
+      <h4>Photographer:</h4>
+      <p><%= @album.photographer %></p>
+    <% end %>
+
+    <%= if @album.date != nil do %>
+      <h4>Date:</h4>
+      <p><%= Timex.format!(@album.date, "{Mfull} {YYYY}") %></p>
+    <% end %>
+
+    <%= if @album.city != nil do %>
+      <h4>City:</h4>
+      <p><%= @album.city %></p>
+    <% end %>
+  </div>
+</div>

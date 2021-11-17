@@ -1,0 +1,43 @@
+<div class="nav-section">
+  <div class="link-to-aif py-2">
+    <div class="container">
+      <%= link to: "http://arabimagefoundation.org/", class: "" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+          <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+        </svg>
+        <img src='<%= Routes.static_path(@conn, "/images/logo.png") %>' alt="Arab Image Foundation logo" />
+        <span class="ms-2 text-sm">Visit main AIF website</span>
+      <% end %>
+    </div>
+  </div>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" role="navigation">
+    <div class="container">
+      <%= link("AIF Albums Project", to: Routes.page_path(@conn, :index), class: "navbar-brand") %>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent" phx-update="ignore">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <%= link("Home", to: Routes.page_path(@conn, :index), class: "nav-link") %>
+          </li>
+          <%# <li class="nav-item">
+            <a href="#" class="nav-link">Collection</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">Lab</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">Explore</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">Engage</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">Support</a>
+          </li> %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
