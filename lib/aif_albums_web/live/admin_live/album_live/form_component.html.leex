@@ -10,8 +10,11 @@
   <%= input f, :aifid, group_class: "my-3", label: "Number",
       input_opts: [placeholder: "Album number"] %>
 
-  <%= label f, "Collection" %>
+  <%= input f, :homepage_order, using: :number_input, group_class: "my-3" %>
+
   <%= select f, :collection_id, Enum.map(@collections, &{"#{&1.aifid} — #{&1.name}", &1.id}), class: "form-select" %>
+
+  <%= label f, "Home page order", class: "form-label mt-3" %>
 
   <%= label f, "Cover Image", class: "form-label mt-3" %>
   <div>
