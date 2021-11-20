@@ -9,8 +9,11 @@ processes = []
 [deploy]
   release_command = "/app/entry eval AIFAlbums.Release.migrate"
 
+[mounts]
+  source="aif_albums_data"
+  destination="/static"
+
 [env]
-  PORT = "8080"
 
 [experimental]
   allowed_public_ports = []
@@ -37,7 +40,7 @@ processes = []
     port = 443
 
   [[services.tcp_checks]]
-    grace_period = "30s"
+    grace_period = "45s"
     interval = "15s"
     restart_limit = 0
     timeout = "2s"

@@ -18,7 +18,7 @@ ARG RUNNER_IMAGE="debian:bullseye-20210902-slim"
 FROM ${BUILDER_IMAGE} as builder
 
 # install build dependencies
-RUN apt-get update -y && apt-get install -y build-essential git \
+RUN apt-get update -y && apt-get install -y build-essential git npm \
     && apt-get clean && rm -f /var/lib/apt/lists/*_*
 
 # prepare build dir
@@ -51,11 +51,12 @@ COPY priv priv
 COPY assets assets
 
 # For Phoenix 1.6 and later, compile assets using esbuild
-RUN mix assets.deploy
+#RUN mix assets.deploy
 
 # For Phoenix versions earlier than 1.6, compile assets npm
-# RUN cd assets && yarn install && yarn run webpack --mode production
-# RUN mix phx.digest
+RUN npm install --prefix ./assets
+RUN npm run deploy --prefix ./assets
+RUN mix phx.digest
 
 # Compile the release
 COPY lib lib

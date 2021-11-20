@@ -3,7 +3,7 @@ defmodule AIFAlbums.Release do
   Used for executing DB release tasks when run in production without Mix
   installed.
   """
-  @app :hello_elixir
+  @app :aif_albums
 
   def migrate do
     load_app()
