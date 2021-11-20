@@ -34,33 +34,38 @@
     </div>
   </div>
 </div>
-<!--
-<div class="d-flex gap-2 mt-3">
-  <%= for album_spread <- @album.album_spreads do %>
-    <div>
-      <%= live_patch to: Routes.album_show_spread_path(@socket, :show, @album, album_spread) do %>
-        <img src="https://via.placeholder.com/160x90?text=<%= album_spread.aifid %>"
-            alt="Album spread <%= album_spread.aifid %>" />
-      <% end %>
-    </div>
-  <% end %>
-</div>
+
 <div class="row">
-  <div class="col-12 col-md-6 order-2 order-md-1">
-    <dl>
-      <%= if @current_album_spread.inscriptions != nil do %>
-        <dt>Inscriptions:</dt>
-        <dd><%= @current_album_spread.inscriptions %> cm</dd>
+  <div class="col-12 col-md-6 order-2 order-md-1 pt-5">
+
+    <%= if @previous_spread_id == nil do %>
+
+          <%= "Album #{@album_sequence} of #{@number_of_albums_in_collection} from " %>
+      <%= if @number_of_albums_in_collection == 1 do %>
+        <%= "#{@album.collection.name} collection (#{@album.collection.aifid})" %>
+      <% else %>
+        <%= live_redirect to: Routes.collection_show_path(@socket, :show, @album.collection) do %>
+          <%= "#{@album.collection.name} collection (#{@album.collection.aifid})" %>
+        <% end %>
       <% end %>
-      <%= if @current_album_spread.height != nil do %>
-        <dt>Height:</dt>
-        <dd><%= @current_album_spread.height %> cm</dd>
-      <% end %>
-      <%= if @current_album_spread.width != nil do %>
-        <dt>Width:</dt>
-        <dd><%= @current_album_spread.width %> cm</dd>
-      <% end %>
-    </dl>
+
+    <% else %>
+
+      <dl>
+        <%= if @current_album_spread.inscriptions != nil do %>
+          <dt>Inscriptions:</dt>
+          <dd><%= @current_album_spread.inscriptions %> cm</dd>
+        <% end %>
+        <%= if @current_album_spread.height != nil do %>
+          <dt>Height:</dt>
+          <dd><%= @current_album_spread.height %> cm</dd>
+        <% end %>
+        <%= if @current_album_spread.width != nil do %>
+          <dt>Width:</dt>
+          <dd><%= @current_album_spread.width %> cm</dd>
+        <% end %>
+      </dl>
+
+    <% end %>
   </div>
 </div>
--->
