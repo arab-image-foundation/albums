@@ -14,6 +14,7 @@ config :aif_albums,
 # Configures the endpoint
 config :aif_albums, AIFAlbumsWeb.Endpoint,
   url: [host: "localhost"],
+  secret_key_base: "C4xk6XGQtKygjRKlsaDcK5PDgTlj7zeM3vPCN8sFa1aYtWITONSrIDxF5Vx5av/9",
   render_errors: [view: AIFAlbumsWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: AIFAlbums.PubSub,
   live_view: [signing_salt: "0tXUWlX/"]
