@@ -1,0 +1,46 @@
+# fly.toml file generated for aif-albums on 2021-11-17T15:10:20Z
+
+app = "aif-albums"
+
+kill_signal = "SIGTERM"
+kill_timeout = 5
+processes = []
+
+[deploy]
+  release_command = "/app/entry eval AIFAlbums.Release.migrate"
+
+[mounts]
+  source="aif_albums_data"
+  destination="/static"
+
+[env]
+
+[experimental]
+  allowed_public_ports = []
+  auto_rollback = true
+
+[[services]]
+  http_checks = []
+  internal_port = 4000
+  processes = ["app"]
+  protocol = "tcp"
+  script_checks = []
+
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+    type = "connections"
+
+  [[services.ports]]
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
+  [[services.tcp_checks]]
+    grace_period = "45s"
+    interval = "15s"
+    restart_limit = 0
+    timeout = "2s"
