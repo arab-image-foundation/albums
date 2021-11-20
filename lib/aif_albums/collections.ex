@@ -63,6 +63,26 @@ defmodule AIFAlbums.Collections do
   end
 
   @doc """
+  Gets the number of albums in a collection
+
+  Raises `ArgumentError` if the Collection does not exist.
+
+  ## Examples
+
+    iex> get_collection_albums_count!(123)
+    4
+
+    iex> get_collection_albums_count!(456)
+    ** (ArgumentError)
+  """
+  def get_collection_albums_count!(id) do
+    Collection
+    |> Repo.get(id)
+    |> Ecto.assoc(:albums)
+    |> Repo.aggregate(:count, :id)
+  end
+
+  @doc """
   Creates a collection.
 
   ## Examples

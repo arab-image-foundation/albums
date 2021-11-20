@@ -4,6 +4,7 @@ defmodule AIFAlbumsWeb.AlbumLive.ShowSpread do
   alias AIFAlbumsWeb.AlbumLive.AlbumSpreadComponent
   alias AIFAlbums.AlbumSpreads.AlbumSpread
   alias AIFAlbums.Albums
+  alias AIFAlbums.Collections
 
   @impl true
   def mount(_params, _session, socket) do
@@ -23,6 +24,10 @@ defmodule AIFAlbumsWeb.AlbumLive.ShowSpread do
 
     album_spreads_list = Enum.map(album.album_spreads, fn %AlbumSpread{id: id} -> id end)
 
+    album_sequence = String.slice(album.aifid, -3, 3) |> String.to_integer()
+
+    number_of_albums_in_collection = Collections.get_collection_albums_count!(album.collection.id)
+
     current_album_spread =
       case spread_id do
         "cover" ->
@@ -37,6 +42,8 @@ defmodule AIFAlbumsWeb.AlbumLive.ShowSpread do
     {:noreply,
      socket
      |> assign(:album, album)
+     |> assign(:album_sequence, album_sequence)
+     |> assign(:number_of_albums_in_collection, number_of_albums_in_collection)
      |> assign(:previous_spread_id, previous_spread_id)
      |> assign(:next_spread_id, next_spread_id)
      |> assign(:current_album_spread, current_album_spread)
