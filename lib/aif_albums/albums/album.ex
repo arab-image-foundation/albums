@@ -15,6 +15,8 @@ defmodule AIFAlbums.Albums.Album do
     field :width, :float
     field :thumbnail_url, :string
     field :cover_image_url, :string
+    field :homepage_order, :integer
+
 
     belongs_to :collection, AIFAlbums.Collections.Collection
 
@@ -39,9 +41,10 @@ defmodule AIFAlbums.Albums.Album do
                     :city,
                     :collection_id,
                     :thumbnail_url,
-                    :cover_image_url
+                    :cover_image_url,
+                    :homepage_order
                   ])
-    |> validate_required([:aifid, :collection_id])
+    |> validate_required([:aifid, :collection_id, :homepage_order])
     |> validate_required(:cover_image_url, message: "Collection must have a cover image")
     |> unique_constraint(:aifid, message: "An album with this number already exists")
   end

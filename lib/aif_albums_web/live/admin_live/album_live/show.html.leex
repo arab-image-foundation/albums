@@ -73,6 +73,19 @@
 
     <div class="row mb-2 border-top pt-1">
       <div class="col-2 fw-bold">
+        Home page order:
+      </div>
+      <div class="col-10">
+        <%= if @album.homepage_order != nil do %>
+          <%= @album.homepage_order %>
+        <% else %>
+          -
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row mb-2 border-top pt-1">
+      <div class="col-2 fw-bold">
         Description:
       </div>
       <div class="col-10">
@@ -83,7 +96,6 @@
         <% end %>
       </div>
     </div>
-
     <div class="row mb-2 border-top pt-1">
       <div class="col-2 fw-bold">
         Height:

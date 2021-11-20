@@ -13,7 +13,7 @@ defmodule AIFAlbumsWeb.PageLive do
         ]
       )
       |> assign(page_title: "AIF Albums")
-      |> assign(sort_by: :aifid)
+      |> assign(sort_by: :homepage_order)
       |> assign(sort_order: :asc)
 
     {:ok, socket}
