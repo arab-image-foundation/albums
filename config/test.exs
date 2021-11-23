@@ -18,10 +18,5 @@ config :aif_albums, AIFAlbumsWeb.Endpoint,
   http: [port: 4002],
   server: false
 
-config :aif_albums, uploads_path: Path.join([:code.priv_dir(:aif_albums),
-  "static", "test_uploads"])
-
-
-
 # Print only warnings and errors during test
 config :logger, level: :warn
