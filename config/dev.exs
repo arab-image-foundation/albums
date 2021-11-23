@@ -65,6 +65,9 @@ config :aif_albums, AIFAlbumsWeb.Endpoint,
     ]
   ]
 
+config :aif_albums, uploads_path: Path.join([:code.priv_dir(:aif_albums),
+                                              "static", "uploads"])
+
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
 
