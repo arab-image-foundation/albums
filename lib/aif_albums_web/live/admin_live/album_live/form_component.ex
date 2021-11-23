@@ -106,21 +106,11 @@ defmodule AIFAlbumsWeb.AdminLive.AlbumLive.FormComponent do
     end)
     consume_uploaded_entries(socket, :cover_image, fn meta, entry ->
       dest =
-        case Mix.env() do
-          :prod ->
-            Path.join([
-              "images",
-              "#{entry.uuid}.jpg"
-            ])
-          _ ->
-            Path.join([
-              :code.priv_dir(:aif_albums),
-              "static",
-              "uploads",
-              "#{entry.uuid}.jpg"
-            ])
-        end
-      File.cp!(meta.path, dest)
+        Path.join([
+          Application.fetch_env!(:aif_albums, :uploads_path),
+          "#{entry.uuid}.jpg"
+          ])
+        File.cp!(meta.path, dest)
     end)
     {:ok, album}
   end
