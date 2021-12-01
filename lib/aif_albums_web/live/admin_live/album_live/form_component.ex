@@ -7,18 +7,7 @@ defmodule AIFAlbumsWeb.AdminLive.AlbumLive.FormComponent do
 
   @impl true
   def mount(socket) do
-    {
-      :ok,
-      socket
-      |> allow_upload(
-          :thumbnail,
-          accept: ~w(.jpg .jpeg),
-          max_file_size: 30_000)
-      |> allow_upload(
-          :cover_image,
-          accept: ~w(.jpg .jpeg),
-          max_file_size: 3_000_000)
-    }
+    { :ok, socket }
   end
 
   @impl true
@@ -48,14 +37,8 @@ defmodule AIFAlbumsWeb.AdminLive.AlbumLive.FormComponent do
     save_album(socket, socket.assigns.action, album_params)
   end
 
-  def handle_event("cancel-cover-image-upload", %{"ref" => ref}, socket) do
-    {:noreply, cancel_upload(socket, :cover_image, ref)}
-  end
-
   defp save_album(socket, :edit, album_params) do
-    {completed_cover_image_uploads, []} = uploaded_entries(socket, :cover_image)
-    album_params = put_cover_image(socket, completed_cover_image_uploads, album_params)
-    case Albums.update_album(socket.assigns.album, album_params, &consume_uploads(socket, &1)) do
+    case Albums.update_album(socket.assigns.album, album_params) do
       {:ok, _album} ->
         {:noreply,
          socket
@@ -68,9 +51,7 @@ defmodule AIFAlbumsWeb.AdminLive.AlbumLive.FormComponent do
   end
 
   defp save_album(socket, :new, album_params) do
-    {completed_cover_image_uploads, []} = uploaded_entries(socket, :cover_image)
-    album_params = put_cover_image(socket, completed_cover_image_uploads, album_params)
-    case Albums.create_album(%Album{}, album_params, &consume_uploads(socket, &1)) do
+    case Albums.create_album(%Album{}, album_params) do
       {:ok, _album} ->
         {:noreply,
          socket
@@ -81,42 +62,4 @@ defmodule AIFAlbumsWeb.AdminLive.AlbumLive.FormComponent do
         {:noreply, assign(socket, changeset: changeset)}
     end
   end
-
-  defp put_cover_image(_socket, [], album_params), do: album_params
-  defp put_cover_image(socket, completed_cover_image_uploads, album_params) do
-    urls =
-      for entry <- completed_cover_image_uploads do
-        Routes.static_path(socket, "/uploads/#{entry.uuid}.jpg")
-      end
-    [url | _ ] = urls
-
-    Map.merge(album_params, %{"cover_image_url" => url})
-  end
-
-  def consume_uploads(socket, %Album{} = album) do
-    consume_uploaded_entries(socket, :thumbnail, fn meta, entry ->
-      thumbnail_dest =
-        Path.join([
-          :code.priv_dir(:aif_albums),
-          "static",
-          "uploads",
-          "#{entry.uuid}.jpg"
-        ])
-      File.cp!(meta.path, thumbnail_dest)
-    end)
-    consume_uploaded_entries(socket, :cover_image, fn meta, entry ->
-      dest =
-        Path.join([
-          Application.fetch_env!(:aif_albums, :uploads_path),
-          "#{entry.uuid}.jpg"
-          ])
-        File.cp!(meta.path, dest)
-    end)
-    {:ok, album}
-  end
-
-  def error_to_string(:too_large), do: "Too large. Maximum size 30kB"
-  def error_to_string(:too_many_files), do: "You have selected too many files"
-  def error_to_string(:not_accepted), do: "You have selected an unacceptable file type"
-
 end

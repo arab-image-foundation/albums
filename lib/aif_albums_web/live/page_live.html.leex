@@ -9,13 +9,12 @@
       digitize the albums and make them available online.
     </p>
   </div>
-  <hr class="bg-secondary">
   <div class="albums-grid">
     <%= for album <- @albums do %>
       <div>
         <div id="album-<%= album.id %>">
           <%= live_redirect to: Routes.album_show_spread_path(@socket, :show, album, :cover) do %>
-            <%= img_tag album.cover_image_url, alt: "Album #{album.aifid}" %>
+            <%= img_tag album_cover_image_url(album.aifid), alt: "Album #{album.aifid}" %>
           <% end %>
         </div>
       </div>

@@ -70,6 +70,7 @@
     <thead>
       <tr>
         <th>Number</th>
+        <th>Cover</th>
         <th>Description</th>
         <th></th>
       </tr>
@@ -78,6 +79,11 @@
       <%= for album <- @collection.albums do %>
         <tr id="album-<%= album.id %>">
           <td><%= album.aifid %></td>
+          <td>
+            <%= img_tag album_cover_image_url(album.aifid),
+                style: "max-width: 100%; max-height: 150px;",
+                alt: "Album #{album.aifid}" %>
+          </td>
           <td><%= album.description %></td>
           <td>
             <div class="d-flex justify-content-end">

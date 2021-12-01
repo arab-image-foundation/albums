@@ -19,7 +19,7 @@
 <%= if @live_action in [:edit] do %>
   <%= live_modal AIFAlbumsWeb.AdminLive.AlbumLive.FormComponent,
     id: @album.id,
-    title: @spread_title,
+    title: "Album #{@album.aifid}",
     action: @live_action,
     album: @album,
     return_to: Routes.admin_album_show_path(@socket, :show, @album) %>
@@ -67,7 +67,7 @@
         Cover Image:
       </div>
       <div class="col-10">
-        <%= img_tag @album.cover_image_url, height: "100", alt: "Album #{@album.aifid}" %>
+        <%= img_tag album_cover_image_url(@album.aifid), height: "100", alt: "Album #{@album.aifid}" %>
       </div>
     </div>
 
@@ -224,7 +224,7 @@
             <%= album_spread.aifid %>
           </td>
           <td>
-            <%= img_tag album_spread.image_url, alt: "Spread #{album_spread.aifid}", height: "80px" %>
+            <%= img_tag album_spread_image_url(@album.aifid, album_spread.aifid), alt: "Spread #{album_spread.aifid}", height: "80px" %>
           </td>
           <td class="align-middle">
             <div class="d-flex justify-content-end">
