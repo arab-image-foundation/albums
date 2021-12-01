@@ -28,7 +28,7 @@
   <div class="albums-grid">
     <%= for album <- @collection.albums do %>
         <div id="collection-<%= album.id %>">
-          <%= img_tag album.cover_image_url, alt: "Album #{album.aifid}" %>
+          <%= img_tag album_cover_image_url(album.aifid), alt: "Album #{album.aifid}" %>
         </div>
     <% end %>
   </div>

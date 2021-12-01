@@ -91,6 +91,7 @@ defmodule AIFAlbumsWeb do
       import AIFAlbumsWeb.ErrorHelpers
       import AIFAlbumsWeb.InputHelpers
       import AIFAlbumsWeb.Gettext
+      import AIFAlbumsWeb.ImageHelpers
       alias AIFAlbumsWeb.Router.Helpers, as: Routes
     end
   end

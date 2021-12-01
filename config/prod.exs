@@ -13,6 +13,8 @@ config :aif_albums, AIFAlbumsWeb.Endpoint,
   url: [host: "example.com", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
+config :aif_albums, uploads_path: "/images"
+
 # Do not print debug messages in production
 config :logger, level: :info
 

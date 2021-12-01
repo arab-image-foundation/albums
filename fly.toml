@@ -11,7 +11,7 @@ processes = []
 
 [mounts]
   source="aif_albums_data"
-  destination="/static"
+  destination="/images"
 
 [env]
 
