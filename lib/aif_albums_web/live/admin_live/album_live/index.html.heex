@@ -33,9 +33,9 @@
   </thead>
   <tbody id="albums">
     <%= for album <- @albums do %>
-      <tr id="album-<%= album.id %>">
-        <td><%= album.aifid %></td>
-        <td><%= album.description %></td>
+      <tr id="album-{album.id}">
+        <td>{album.aifid}</td>
+        <td>{album.description}</td>
         <td>
           <div class="d-flex justify-content-end">
             <%= live_redirect "Show", to: Routes.album_show_path(@socket, :show, album),

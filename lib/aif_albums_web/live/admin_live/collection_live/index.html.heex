@@ -35,10 +35,10 @@
   </thead>
   <tbody id="collections">
     <%= for collection <- @collections do %>
-      <tr id="collection-<%= collection.id %>">
-        <td><%= collection.aifid %></td>
-        <td><%= collection.name %></td>
-        <td><%= collection.contract %></td>
+      <tr id="collection-{collection.id}">
+        <td>{collection.aifid}</td>
+        <td>{collection.name}</td>
+        <td>{collection.contract}</td>
 
         <td>
           <div class="d-flex justify-content-end">

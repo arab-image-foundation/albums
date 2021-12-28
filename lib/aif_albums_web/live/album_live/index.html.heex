@@ -3,7 +3,7 @@
   <div class="collections">
     <%= for album <- @albums do %>
       <div class="">
-        <div id="album-<%= album.id %>" class="card">
+        <div id="album-{album.id}" class="card">
           <%= img_tag album.cover_image_url, class: "card-img-top", alt: album.aifid %>
           <div class="card-body">
             <%= live_redirect "",

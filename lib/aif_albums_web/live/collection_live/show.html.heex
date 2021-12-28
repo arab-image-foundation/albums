@@ -14,22 +14,22 @@
 
   <dl>
     <dt>Reference number</dt>
-    <dd><%= @collection.aifid %></dd>
+    <dd>{@collection.aifid}</dd>
     <%= if @collection.contract != nil do %>
       <dt>Contract reference</dt>
-      <dd><%= @collection.contract %></dd>
+      <dd>{@collection.contract}</dd>
     <% end %>
     <%= if @collection.credit_line != nil do %>
       <dt>Credit line</dt>
-      <dd><%= @collection.credit_line %></dd>
+      <dd>{@collection.credit_line}</dd>
     <% end %>
   </dl>
 
   <div class="albums-grid">
     <%= for album <- @collection.albums do %>
-        <div id="collection-<%= album.id %>">
+        <div id="collection-{album.id}">
           <%= img_tag album_cover_image_url(album.aifid), alt: "Album #{album.aifid}" %>
         </div>
     <% end %>
   </div>
-<div>
+</div>

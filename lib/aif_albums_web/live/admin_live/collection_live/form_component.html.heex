@@ -1,6 +1,6 @@
-<h2><%= @title %></h2>
+<h2>{@title}</h2>
 
-<%= f = form_for @changeset, "#",
+<.form let={f} for={@changeset}, "#",
       id: "collection-form",
       phx_target: @myself,
       phx_change: "validate",
@@ -18,4 +18,4 @@
       <%= input f, :credit_line, group_class: "my-3" %>
 
       <%= submit "Save", phx_disable_with: "Saving...", class: "btn btn-primary" %>
-</form>
+</.form>

@@ -34,28 +34,28 @@
       <%= live_redirect "Collections", to: Routes.admin_collection_index_path(@socket, :index) %>
     </li>
     <li class="breadcrumb-item" aria-current="page">
-      <%= @collection.name %>
+      {@collection.name}
     </li>
   </ol>
 </nav>
 
 <div class="admin collection-details">
   <h1>
-    <%= @collection.name %> Collection
+    {@collection.name} Collection
     <%= live_patch "Edit", to: Routes.admin_collection_show_path(@socket, :edit, @collection),
       class: "ms-2 btn btn-sm btn-secondary" %>
   </h1>
 
   <dl>
     <dt>Reference number</dt>
-    <dd><%= @collection.aifid %></dd>
+    <dd>{@collection.aifid}</dd>
     <%= if @collection.contract != nil do %>
       <dt>Contract reference</dt>
-      <dd><%= @collection.contract %></dd>
+      <dd>{@collection.contract}</dd>
     <% end %>
     <%= if @collection.credit_line != nil do %>
       <dt>Credit line</dt>
-      <dd><%= @collection.credit_line %></dd>
+      <dd>{@collection.credit_line}</dd>
     <% end %>
   </dl>
 
@@ -77,7 +77,7 @@
     </thead>
     <tbody id="albums">
       <%= for album <- @collection.albums do %>
-        <tr id="album-<%= album.id %>">
+        <tr {album.id}>
           <td><%= album.aifid %></td>
           <td>
             <%= img_tag album_cover_image_url(album.aifid),
