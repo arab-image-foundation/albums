@@ -1,11 +1,7 @@
 <h2>{@title}</h2>
 
-<.form let={f} for={@changeset}, "#",
-      id: "collection-form",
-      phx_target: @myself,
-      phx_change: "validate",
-      novalidate: true,
-      phx_submit: "save" %>
+<.form let={f} for={@changeset} id="collection-form" phx_target={@myself} phx_change="validate"
+            novalidate="true" phx_submit="save">
 
       <%= input f, :aifid, group_class: "my-3", label: "Number",
             input_opts: [placeholder: "Collection number"] %>

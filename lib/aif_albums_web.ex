@@ -31,8 +31,8 @@ defmodule AIFAlbumsWeb do
     quote do
       use Phoenix.View,
         root: "lib/aif_albums_web/templates",
-        namespace: AIFAlbumsWeb,
-        layout: {AIFAlbumsWeb.LayoutView, "live.html"}
+        namespace: AIFAlbumsWeb
+        # layout: {AIFAlbumsWeb.LayoutView, "live.html"}
 
 
       # Import convenience functions from controllers

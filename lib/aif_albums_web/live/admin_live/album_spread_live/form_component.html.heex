@@ -1,11 +1,7 @@
 <h2>{@title}</h2>
 
-<.form let={f} for={@changeset}, "#",
-  id: "album_spread-form",
-  phx_target: @myself,
-  phx_change: "validate",
-  novalidate: true,
-  phx_submit: "save" %>
+<.form let={f} for={@changeset} id="album_spread-form" phx_target={@myself}
+            phx_change="validate" novalidate="true" phx_submit="save">
 
   <%= hidden_input f, :album_id, value: @album.id %>
 

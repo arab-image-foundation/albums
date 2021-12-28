@@ -10,10 +10,10 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :aif_albums, AIFAlbumsWeb.Endpoint,
-  url: [host: "example.com", port: 80],
+  # url: [host: "example.com", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
-config :aif_albums, uploads_path: "/images"
+# config :aif_albums, uploads_path: "/images"
 
 # Do not print debug messages in production
 config :logger, level: :info

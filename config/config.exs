@@ -5,7 +5,7 @@
 # is restricted to this project.
 
 # General application configuration
-use Mix.Config
+import Config
 
 config :aif_albums,
   namespace: AIFAlbums,
@@ -14,19 +14,25 @@ config :aif_albums,
 # Configures the endpoint
 config :aif_albums, AIFAlbumsWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "C4xk6XGQtKygjRKlsaDcK5PDgTlj7zeM3vPCN8sFa1aYtWITONSrIDxF5Vx5av/9",
   render_errors: [view: AIFAlbumsWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: AIFAlbums.PubSub,
   live_view: [signing_salt: "0tXUWlX/"]
 
 # Configure esbuild (the version is required)
 config :esbuild,
-version: "0.12.18",
-default: [
-  args: ~w(js/app.js --bundle --target=es2016 --outdir=../priv/static/assets),
-  cd: Path.expand("../assets", __DIR__),
-  env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
-]
+  version: "0.14.0",
+  default: [
+    args: ~w(js/app.js --bundle --target=es2016 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
+    cd: Path.expand("../assets", __DIR__),
+    env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
+  ]
+
+config :dart_sass,
+  version: "1.43.1",
+  default: [
+    args: ~w(css/app.scss ../priv/static/assets/app.css),
+    cd: Path.expand("../assets", __DIR__)
+  ]
 
 # Configures Elixir's Logger
 config :logger, :console,
