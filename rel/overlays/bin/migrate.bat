@@ -1,0 +1,1 @@
+call "%~dp0\aif_albums" eval AIFAlbums.Release.migrate

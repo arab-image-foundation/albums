@@ -1,26 +1,28 @@
-<h2>{@title}</h2>
+<div>
+    <h2><%= @title %></h2>
 
-<.form let={f} for={@changeset} id="album_spread-form" phx_target={@myself}
-            phx_change="validate" novalidate="true" phx_submit="save">
+    <.form let={f} for={@changeset} id="album_spread-form" phx_target={@myself}
+                phx_change="validate" novalidate="true" phx_submit="save">
 
-  <%= hidden_input f, :album_id, value: @album.id %>
+    <%= hidden_input f, :album_id, value: @album.id %>
 
-  <%= input f, :aifid, group_class: "my-3", label: "Number",
-        input_opts: [
-            value: "#{@album.aifid}-",
-            placeholder: "Album Spread number"
-            ] %>
+    <%= input f, :aifid, group_class: "my-3", label: "Number",
+            input_opts: [
+                value: "#{@album.aifid}-",
+                placeholder: "Album Spread number"
+                ] %>
 
-  <div>
-      Show image if exists
-  </div>
+    <div>
+        Show image if exists
+    </div>
 
-  <%= input f, :height, using: :number_input, group_class: "my-3" %>
+    <%= input f, :height, using: :number_input, group_class: "my-3" %>
 
-  <%= input f, :width, using: :number_input, group_class: "my-3" %>
+    <%= input f, :width, using: :number_input, group_class: "my-3" %>
 
-  <%= input f, :inscriptions, using: :textarea, group_class: "my-3",
-      input_opts: [placeholder: "Inscriptions"] %>
+    <%= input f, :inscriptions, using: :textarea, group_class: "my-3",
+        input_opts: [placeholder: "Inscriptions"] %>
 
-  <%= submit "Save", phx_disable_with: "Saving...", class: "btn btn-primary mt-3" %>
-</.form>
+    <%= submit "Save", phx_disable_with: "Saving...", class: "btn btn-primary mt-3" %>
+    </.form>
+</div>

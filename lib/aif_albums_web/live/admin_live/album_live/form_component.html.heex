@@ -1,48 +1,50 @@
-<h2>{@title}</h2>
+<div>
+    <h2><%= @title %></h2>
 
-<.form let={f} for{@changeset} id="album-form" phx_target={@myself} phx_change="validate"
-          novalidate="true" phx_submit="save">
+    <.form let={f} for={@changeset} id="album-form" phx_change="validate"
+            novalidate="true" phx_submit="save">
 
-  <%= input f, :aifid, group_class: "my-3", label: "Number",
-      input_opts: [placeholder: "Album number"] %>
+    <%= input f, :aifid, group_class: "my-3", label: "Number",
+        input_opts: [placeholder: "Album number"] %>
 
-  <%= input f, :homepage_order, using: :number_input, group_class: "my-3" %>
+    <%= input f, :homepage_order, using: :number_input, group_class: "my-3" %>
 
-  <%= select f, :collection_id, Enum.map(@collections, &{"#{&1.aifid} — #{&1.name}", &1.id}), class: "form-select" %>
+    <%= select f, :collection_id, Enum.map(@collections, &{"#{&1.aifid} — #{&1.name}", &1.id}), class: "form-select" %>
 
-  <%= label f, "Cover Image", class: "form-label mt-3" %>
-  <div>
-        <%= img_tag album_cover_image_url(@album.aifid), height: "100", alt: "Album #{@album.aifid}" %>
-  </div>
+    <%= label f, "Cover Image", class: "form-label mt-3" %>
+    <div>
+            <%= img_tag album_cover_image_url(@album.aifid), height: "100", alt: "Album #{@album.aifid}" %>
+    </div>
 
-  <%= input f, :description, using: :textarea, group_class: "my-3",
-      input_opts: [placeholder: "Description", rows: 6] %>
+    <%= input f, :description, using: :textarea, group_class: "my-3",
+        input_opts: [placeholder: "Description", rows: 6] %>
 
-  <%= input f, :height, using: :number_input, group_class: "my-3" %>
+    <%= input f, :height, using: :number_input, group_class: "my-3" %>
 
-  <%= input f, :width, using: :number_input, group_class: "my-3" %>
+    <%= input f, :width, using: :number_input, group_class: "my-3" %>
 
-  <%= input f, :depth, using: :number_input, group_class: "my-3" %>
+    <%= input f, :depth, using: :number_input, group_class: "my-3" %>
 
-  <%= input f, :condition, using: :textarea, group_class: "my-3",
-      input_opts: [placeholder: "Describe the condition of the album"] %>
+    <%= input f, :condition, using: :textarea, group_class: "my-3",
+        input_opts: [placeholder: "Describe the condition of the album"] %>
 
-  <%= input f, :inscriptions, group_class: "my-3",
-      input_opts: [placeholder: "Inscriptions on the album"] %>
+    <%= input f, :inscriptions, group_class: "my-3",
+        input_opts: [placeholder: "Inscriptions on the album"] %>
 
-  <%= input f, :photographer, group_class: "my-3" %>
+    <%= input f, :photographer, group_class: "my-3" %>
 
-  <%= label f, :date, class: "form-label d-block" %>
-  <%= date_select f, :date, class: "form-select", builder: fn b -> %>
-        <%= b.(:day, [options: [{"—", nil} | Enum.to_list(1..31)]]) %> /
-        <%= b.(:month, [options: [{"—", nil}, {"January", 1}, {"Febraury", 2}, {"March", 3}, {"April", 4}, {"May", 5}, {"June", 6}, {"July", 7}, {"August", 8}, {"September", 9}, {"October", 10}, {"November", 11}, {"December", 12}]]) %> /
-        <%= b.(:year, [options: [{"—", nil} | Enum.to_list(1900..2022)]]) %>
-  <% end %>
-  <span class="ms-3">
-    <%= error_tag f, :date %>
-  </span>
+    <%= label f, :date, class: "form-label d-block" %>
+    <%= date_select f, :date, class: "form-select", builder: fn b -> %>
+            <%= b.(:day, [options: [{"—", nil} | Enum.to_list(1..31)]]) %> /
+            <%= b.(:month, [options: [{"—", nil}, {"January", 1}, {"Febraury", 2}, {"March", 3}, {"April", 4}, {"May", 5}, {"June", 6}, {"July", 7}, {"August", 8}, {"September", 9}, {"October", 10}, {"November", 11}, {"December", 12}]]) %> /
+            <%= b.(:year, [options: [{"—", nil} | Enum.to_list(1900..2022)]]) %>
+    <% end %>
+    <span class="ms-3">
+        <%= error_tag f, :date %>
+    </span>
 
-  <%= input f, :city, group_class: "my-3" %>
+    <%= input f, :city, group_class: "my-3" %>
 
-  <%= submit "Save", phx_disable_with: "Saving...", class: "btn btn-primary" %>
-</.form>
+    <%= submit "Save", phx_disable_with: "Saving...", class: "btn btn-primary" %>
+    </.form>
+</div>

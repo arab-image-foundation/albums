@@ -17,10 +17,9 @@
 
 // Include phoenix_html to handle method=PUT/DELETE in forms and buttons.
 import 'phoenix_html'
-import 'bootstrap'
-import {Socket} from "phoenix"
-import topbar from "../vendor/topbar"
-import {LiveSocket} from "phoenix_live_view"
+import {Socket} from 'phoenix'
+import topbar from '../vendor/topbar'
+import {LiveSocket} from 'phoenix_live_view'
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 let liveSocket = new LiveSocket("/live", Socket, {params: {_csrf_token: csrfToken}})
@@ -39,3 +38,4 @@ liveSocket.connect()
 // >> liveSocket.disableLatencySim()
 window.liveSocket = liveSocket
 
+import '../vendor/bootstrap/dist/js/bootstrap'

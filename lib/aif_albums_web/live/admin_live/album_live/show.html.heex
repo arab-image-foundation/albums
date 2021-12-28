@@ -10,7 +10,7 @@
       <%= live_redirect "#{@album.collection.name}", to: Routes.admin_collection_show_path(@socket, :show, @album.collection) %>
     </li>
     <li class="breadcrumb-item" aria-current="page">
-      {@album.aifid}
+      <%= @album.aifid %>
     </li>
   </ol>
 </nav>
@@ -45,7 +45,7 @@
 
 <div class="admin-albums-show">
   <h1 class="mb-4">
-    Album {@album.aifid}
+    Album <%= @album.aifid %>
     <%= live_patch "Edit", to: Routes.admin_album_show_path(@socket, :edit, @album),
       class: "ms-2 btn btn-sm btn-secondary" %>
 
@@ -90,7 +90,7 @@
       </div>
       <div class="col-10">
         <%= if @album.description != nil do %>
-          {@album.description}
+          <%= @album.description %>
         <% else %>
           -
         <% end %>
@@ -102,7 +102,7 @@
       </div>
       <div class="col-10">
         <%= if @album.height != nil do %>
-          {@album.height} cm
+          <%= @album.height %> cm
         <% else %>
           -
         <% end %>
@@ -115,7 +115,7 @@
       </div>
       <div class="col-10">
         <%= if @album.width != nil do %>
-          {@album.width} cm
+          <%= @album.width %> cm
         <% else %>
           -
         <% end %>
@@ -130,7 +130,7 @@
       </div>
       <div class="col-10">
         <%= if @album.depth != nil do %>
-          {@album.depth} cm
+          <%= @album.depth %> cm
         <% else %>
           -
         <% end %>
@@ -143,7 +143,7 @@
       </div>
       <div class="col-10">
         <%= if @album.condition != nil do %>
-          {@album.condition}
+          <%= @album.condition %>
         <% else %>
           -
         <% end %>
@@ -156,7 +156,7 @@
       </div>
       <div class="col-10">
         <%= if @album.inscriptions != nil do %>
-          {@album.inscriptions}
+          <%= @album.inscriptions %>
         <% else %>
           -
         <% end %>
@@ -169,7 +169,7 @@
       </div>
       <div class="col-10">
         <%= if @album.photographer != nil do %>
-          {@album.photographer}
+          <%= @album.photographer %>
         <% else %>
           -
         <% end %>
@@ -182,7 +182,7 @@
       </div>
       <div class="col-10">
         <%= if @album.date != nil do %>
-          {@album.date}
+          <%= @album.date %>
         <% else %>
           -
         <% end %>
@@ -195,7 +195,7 @@
       </div>
       <div class="col-10">
         <%= if @album.city != nil do %>
-          {@album.city}
+          <%= @album.city %>
         <% else %>
           -
         <% end %>
@@ -221,7 +221,7 @@
       <%= for album_spread <- @album.album_spreads do %>
         <tr id="album_spread-{album_spread.id}">
           <td class="align-middle">
-            {album_spread.aifid}
+            <%= album_spread.aifid %>
           </td>
           <td>
             <%= img_tag album_spread_image_url(@album.aifid, album_spread.aifid), alt: "Spread #{album_spread.aifid}", height: "80px" %>

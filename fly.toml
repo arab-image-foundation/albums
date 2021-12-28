@@ -7,21 +7,23 @@ kill_timeout = 5
 processes = []
 
 [deploy]
-  release_command = "/app/entry eval AIFAlbums.Release.migrate"
+  release_command = "/app/bin/migrate"
+
+[env]
+  PHX_HOST = "aif-albums.fly.dev"
+  PORT = "8080"
 
 [mounts]
   source="aif_albums_data"
   destination="/images"
-
-[env]
-
 [experimental]
   allowed_public_ports = []
   auto_rollback = true
 
+
 [[services]]
   http_checks = []
-  internal_port = 4000
+  internal_port = 8080
   processes = ["app"]
   protocol = "tcp"
   script_checks = []
