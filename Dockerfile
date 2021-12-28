@@ -51,12 +51,12 @@ COPY priv priv
 COPY assets assets
 
 # For Phoenix 1.6 and later, compile assets using esbuild
-#RUN mix assets.deploy
+RUN mix assets.deploy
 
 # For Phoenix versions earlier than 1.6, compile assets npm
-RUN npm install --prefix ./assets
-RUN npm run deploy --prefix ./assets
-RUN mix phx.digest
+# RUN npm install --prefix ./assets
+# RUN npm run deploy --prefix ./assets
+# RUN mix phx.digest
 
 # Compile the release
 COPY lib lib
