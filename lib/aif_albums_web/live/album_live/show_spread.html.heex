@@ -1,0 +1,84 @@
+<div id="spread-show">
+  <div class="d-flex justify-content-between">
+    <div class="align-self-center">
+      <%= if @previous_spread_id != nil do %>
+        <%= live_patch to: Routes.album_show_spread_path(@socket, :show, @album, @previous_spread_id) do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+            <path fill-rule="evenop" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+          </svg>
+        <% end %>
+      <% else %>
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+          <path fill-rule="evenop" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+        </svg>
+      <% end %>
+    </div>
+
+    <%= live_component @socket,
+          AlbumSpreadComponent,
+          current_album_spread: @current_album_spread,
+          album: @album %>
+
+    <div class="align-self-center">
+      <%= if @next_spread_id != nil do %>
+        <%= live_patch to: Routes.album_show_spread_path(@socket, :show, @album, @next_spread_id) do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+            <path fill-rule="evenop" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+          </svg>
+        <% end %>
+      <% else %>
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+          <path fill-rule="evenop" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+        </svg>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="row justify-content-center">
+  <div class="col-12 col-md-9 col-lg-6 order-2 order-md-1 pt-5">
+
+    <%= if @previous_spread_id == nil do %>
+      <%= "Album #{@album_sequence} of #{@number_of_albums_in_collection} from " %>
+      <%= if @number_of_albums_in_collection == 1 do %>
+        <%= "#{@album.collection.name} collection (#{@album.collection.aifid})" %>
+      <% else %>
+        <%= live_redirect to: Routes.collection_show_path(@socket, :show, @album.collection) do %>
+          <%= "#{@album.collection.name} collection (#{@album.collection.aifid})" %>
+        <% end %>
+      <% end %>
+      <div class="mt-3">
+        <%= if @album.description != nil do %>
+          <h4>Description:</h4>
+          <p><%= @album.description %></p>
+        <% end %>
+        <%= if @album.collection.credit_line != nil do %>
+          <h4>Preferred citation:</h4>
+          <p><%= @album.collection.credit_line %></p>
+        <% end %>
+        <%= if @album.condition != nil do %>
+          <h4>Condition:</h4>
+          <p><%= @album.condition %></p>
+        <% end %>
+      </div>
+
+    <% else %>
+
+      <div>
+        <%= if @current_album_spread.inscriptions != nil do %>
+          <h4>>Inscriptions:</h4>
+          <p><%= @current_album_spread.inscriptions %> cm</p>
+        <% end %>
+        <%= if @current_album_spread.height != nil do %>
+          <h4>>Height:</h4>
+          <p><%= @current_album_spread.height %> cm</p>
+        <% end %>
+        <%= if @current_album_spread.width != nil do %>
+          <h4>>Width:</h4>
+          <p><%= @current_album_spread.width %> cm</p>
+        <% end %>
+      </div>
+
+    <% end %>
+  </div>
+</div>

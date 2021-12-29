@@ -1,4 +1,4 @@
-use Mix.Config
+import Config
 
 # Configure your database
 #
@@ -15,13 +15,15 @@ config :aif_albums, AIFAlbums.Repo,
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
 config :aif_albums, AIFAlbumsWeb.Endpoint,
-  http: [port: 4002],
+  http: [ip: {127, 0, 0, 1}, port: 4002],
+  secret_key_base: "eidj0IMNYrtRbF1r+TM5Wv2r4DqkvWIvsYno6BGKojBE4lY/WhNy1RGeXiOIYk83",
   server: false
 
 config :aif_albums, uploads_path: Path.join([:code.priv_dir(:aif_albums),
   "static", "test_uploads"])
 
-
-
 # Print only warnings and errors during test
 config :logger, level: :warn
+
+# Initialize plugs at runtime for faster test compilation
+config :phoenix, :plug_init_mode, :runtime

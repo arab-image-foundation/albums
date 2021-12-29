@@ -3,12 +3,12 @@ defmodule AIFAlbumsWeb.ModalComponent do
 
   @impl true
   def render(assigns) do
-    ~L"""
-    <div id="<%= @id %>" class="live-modal fade" tabindex="-1"
+    ~H"""
+    <div id={@id} class="live-modal fade" tabindex="-1"
       phx-capture-click="close"
       phx-window-keydown="close"
       phx-key="escape"
-      phx-target="#<%= @myself %>"
+      phx-target="#{@myself}"
       phx-page-loading>
 
       <div class="modal-dialog modal-xl" role="document">

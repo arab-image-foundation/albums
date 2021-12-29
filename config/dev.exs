@@ -1,4 +1,4 @@
-use Mix.Config
+import Config
 
 # Configure your database
 config :aif_albums, AIFAlbums.Repo,
@@ -16,18 +16,26 @@ config :aif_albums, AIFAlbums.Repo,
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
 config :aif_albums, AIFAlbumsWeb.Endpoint,
-  http: [port: 4000],
-  debug_errors: true,
-  code_reloader: true,
+  http: [ip: {127, 0, 0, 1}, port: 4000],
   check_origin: false,
+  code_reloader: true,
+  debug_errors: true,
+  secret_key_base: "C4xk6XGQtKygjRKlsaDcK5PDgTlj7zeM3vPCN8sFa1aYtWITONSrIDxF5Vx5av/9",
   watchers: [
-    node: [
-      "node_modules/webpack/bin/webpack.js",
-      "--mode",
-      "development",
-      "--watch-stdin",
-      cd: Path.expand("../assets", __DIR__)
-    ]
+    # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
+    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
+    sass: {
+      DartSass,
+      :install_and_run,
+      [:default, ~w(--embed-source-map --source-map-urls=absolute --watch)]
+    }
+      # node: [
+    #   "node_modules/webpack/bin/webpack.js",
+    #   "--mode",
+    #   "development",
+    #   "--watch-stdin",
+    #   cd: Path.expand("../assets", __DIR__)
+    # ]
   ]
 
 # ## SSL Support
@@ -58,15 +66,15 @@ config :aif_albums, AIFAlbumsWeb.Endpoint,
 config :aif_albums, AIFAlbumsWeb.Endpoint,
   live_reload: [
     patterns: [
-      ~r"priv/static/(?!uploads).*(js|css|png|jpeg|jpg|gif|svg)$",
+      ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
       ~r"lib/albums_web/(live|views)/.*(ex)$",
       ~r"lib/albums_web/templates/.*(eex)$"
     ]
   ]
 
-uploads_path = "test" #Path.join([:code.priv_dir(:aif_albums),"static", "uploads"])
-config :aif_albums, uploads_path: uploads_path
+# uploads_path = "test" #Path.join([:code.priv_dir(:aif_albums),"static", "uploads"])
+# config :aif_albums, uploads_path: uploads_path
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"

@@ -1,0 +1,35 @@
+<%= if @live_action in [:edit] do %>
+  <%= live_modal AIFAlbumsWeb.CollectionLive.FormComponent,
+    id: @collection.id,
+    title: @page_title,
+    action: @live_action,
+    collection: @collection,
+    return_to: Routes.collection_show_path(@socket, :show, @collection) %>
+<% end %>
+
+<div class="collection-details">
+  <h1>
+    <%= @collection.name %> Collection
+  </h1>
+
+  <dl>
+    <dt>Reference number</dt>
+    <dd>{@collection.aifid}</dd>
+    <%= if @collection.contract != nil do %>
+      <dt>Contract reference</dt>
+      <dd>{@collection.contract}</dd>
+    <% end %>
+    <%= if @collection.credit_line != nil do %>
+      <dt>Credit line</dt>
+      <dd>{@collection.credit_line}</dd>
+    <% end %>
+  </dl>
+
+  <div class="albums-grid">
+    <%= for album <- @collection.albums do %>
+        <div id="collection-{album.id}">
+          <%= img_tag album_cover_image_url(album.aifid), alt: "Album #{album.aifid}" %>
+        </div>
+    <% end %>
+  </div>
+</div>
