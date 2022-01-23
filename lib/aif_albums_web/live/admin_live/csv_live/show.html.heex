@@ -1,0 +1,17 @@
+<h1>Show CSV</h1>
+
+<%= if @live_action in [:edit] do %>
+  <%= live_modal AIFAlbumsWeb.AdminLive.CSVLive.FormComponent,
+    id: @csv.id,
+    title: @page_title,
+    action: @live_action,
+    csv: @csv,
+    return_to: Routes.admin_csv_show_path(@socket, :show, @csv) %>
+<% end %>
+
+<ul>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.csv_show_path(@socket, :edit, @csv), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.csv_index_path(@socket, :index) %></span>

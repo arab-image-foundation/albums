@@ -122,7 +122,7 @@ defmodule AIFAlbums.AlbumSpreads do
     |> Enum.each(&import_spread/1)
   end
 
-  defp import_spread(spread_params) do
+  def import_spread(spread_params) do
     create_or_update_spread(spread_params)
   end
 

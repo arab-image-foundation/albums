@@ -1,0 +1,34 @@
+<h1>Listing Csvs</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <%= live_modal AIFAlbumsWeb.AdminLive.CSVLive.FormComponent,
+    id: @csv.id || :new,
+    title: @page_title,
+    action: @live_action,
+    csv: @csv,
+    return_to: Routes.admin_csv_index_path(@socket, :index)
+  %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="csvs">
+    <%= for csv <- @csvs do %>
+      <tr id={"csv-#{csv.id}"}>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.csv_show_path(@socket, :show, csv) %></span>
+          <span><%= live_patch "Edit", to: Routes.csv_index_path(@socket, :edit, csv) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: csv.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Csv", to: Routes.admin_csv_index_path(@socket, :new) %></span>

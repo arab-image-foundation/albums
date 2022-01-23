@@ -48,6 +48,14 @@ defmodule AIFAlbumsWeb.Router do
 
     live "/admin/album_spreads/:id", AdminLive.AlbumSpreadLive.Show, :show
     # live "/admin/album_spreads/:id/show/edit", AdminLive.AlbumSpreadLive.Show, :edit
+
+    live "/admin/csvs", AdminLive.CSVLive.Index, :index
+    live "/admin/csvs/new", AdminLive.CSVLive.Index, :new
+    live "/admin/csvs/:id/edit", AdminLive.CSVLive.Index, :edit
+
+    live "/admin/csvs/:id", AdminLive.CSVLive.Show, :show
+    live "/admin/csvs/:id/show/edit", AdminLive.CSVLive.Show, :edit
+
   end
 
   # Other scopes may use custom stacks.
