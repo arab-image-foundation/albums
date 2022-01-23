@@ -49,6 +49,7 @@ defmodule AIFAlbums.MixProject do
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
 
+      {:csv, "~> 2.4"},
       {:httpoison, "~> 1.8"},
       {:timex, "~> 3.0"},
 

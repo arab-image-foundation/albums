@@ -6,6 +6,7 @@ defmodule AIFAlbums.AlbumSpreads do
   import Ecto.Query, warn: false
   alias AIFAlbums.Repo
 
+  alias AIFAlbums.Albums.Album
   alias AIFAlbums.AlbumSpreads.AlbumSpread
 
   @doc """
@@ -112,5 +113,31 @@ defmodule AIFAlbums.AlbumSpreads do
   """
   def change_album_spread(%AlbumSpread{} = album_spread, attrs \\ %{}) do
     AlbumSpread.changeset(album_spread, attrs)
+  end
+
+  def import_csv(filename) do
+    filename
+    |> File.stream!()
+    |> CSV.decode!(headers: true)
+    |> Enum.each(&import_spread/1)
+  end
+
+  defp import_spread(spread_params) do
+    create_or_update_spread(spread_params)
+  end
+
+  defp create_or_update_spread(%{"aifid" => aifid} = spread_params) do
+    spread = Repo.get_by(AlbumSpread, aifid: aifid)
+    case spread do
+      nil -> create_spread_from_import(spread_params)
+      _ ->  update_album_spread(spread, spread_params)
+    end
+  end
+
+  defp create_spread_from_import(%{"aifid" => aifid} = spread_params) do
+    [collection, album | _] = aifid |> String.split("-")
+    album = Repo.get_by(Album, aifid: collection <> "-" <> album)
+    spread_params = Map.merge(spread_params, %{"album_id" => album.id})
+    create_album_spread(spread_params)
   end
 end
