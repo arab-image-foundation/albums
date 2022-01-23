@@ -1,5 +1,5 @@
 <div id="spread-show">
-  <div class="d-flex justify-content-between">
+  <div class="d-flex justify-content-between" >
     <div class="align-self-center">
       <%= if @previous_spread_id != nil do %>
         <%= live_patch to: Routes.album_show_spread_path(@socket, :show, @album, @previous_spread_id) do %>
@@ -13,11 +13,15 @@
         </svg>
       <% end %>
     </div>
+    <div>
+      <.live_component module={AIFAlbumsWeb.AlbumLive.AlbumSpreadComponent}
+          album_aifid={@album.aifid}
+          album_spread_aifid={@current_album_spread.aifid}
+          next_spread_id={@next_spread_id}
+          id="spread-image"
+      />
+    </div>
 
-    <%= live_component @socket,
-          AlbumSpreadComponent,
-          current_album_spread: @current_album_spread,
-          album: @album %>
 
     <div class="align-self-center">
       <%= if @next_spread_id != nil do %>

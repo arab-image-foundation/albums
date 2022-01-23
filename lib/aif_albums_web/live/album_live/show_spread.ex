@@ -1,6 +1,8 @@
 defmodule AIFAlbumsWeb.AlbumLive.ShowSpread do
   use AIFAlbumsWeb, :live_view
 
+  alias Phoenix.LiveView.JS
+
   alias AIFAlbumsWeb.AlbumLive.AlbumSpreadComponent
   alias AIFAlbums.AlbumSpreads.AlbumSpread
   alias AIFAlbums.Albums
@@ -49,6 +51,17 @@ defmodule AIFAlbumsWeb.AlbumLive.ShowSpread do
      |> assign(:current_album_spread, current_album_spread)
      |> assign(:page_title, "Album Page")
     }
+  end
+
+  def transition_image(js \\ %JS{}, %{socket: socket, album: album, spread_id: spread_id}) do
+    js
+    |> JS.remove_class("fade-in-image", to: "#spread-image")
+    |> JS.add_class("fade-out-image", to: "#spread-image")
+
+    path = AIFAlbumsWeb.Router.Helpers.album_show_spread_path(socket, :show, album, spread_id)
+    IO.inspect(path, label: "js: ")
+
+    redirect(socket, to: path)
   end
 
   defp get_previous_spread_id(spread_id, [first_spread | _] = album_spreads_list) do
