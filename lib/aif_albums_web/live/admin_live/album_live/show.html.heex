@@ -19,9 +19,10 @@
 <%= if @live_action in [:edit] do %>
   <%= live_modal AIFAlbumsWeb.AdminLive.AlbumLive.FormComponent,
     id: @album.id,
+    album: @album,
+    collection: @album.collection,
     title: "Album #{@album.aifid}",
     action: @live_action,
-    album: @album,
     return_to: Routes.admin_album_show_path(@socket, :show, @album) %>
 <% end %>
 <%= if @live_action in [:new_album_spread] do %>
