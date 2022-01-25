@@ -33,6 +33,7 @@ defmodule AIFAlbums.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:bcrypt_elixir, "~> 2.0"},
       {:phoenix, "~> 1.6.5"},
       {:phoenix_ecto, "~> 4.4"},
       {:ecto_sql, "~> 3.6"},
@@ -51,6 +52,7 @@ defmodule AIFAlbums.MixProject do
 
       {:csv, "~> 2.4"},
       {:httpoison, "~> 1.8"},
+      {:swoosh, "~> 1.4"},
       {:timex, "~> 3.0"},
 
       {:plug_cowboy, "~> 2.0"}

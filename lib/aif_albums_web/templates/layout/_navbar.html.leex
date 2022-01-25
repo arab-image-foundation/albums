@@ -21,6 +21,11 @@
           <li class="nav-item">
             <%= link("Home", to: Routes.page_path(@conn, :index), class: "nav-link") %>
           </li>
+          <%= if @current_user do %>
+            <li class="nav-item">
+              <%= link "Log out", to: Routes.user_session_path(@conn, :delete), method: :delete, class: "nav-link" %>
+            </li>
+          <% end %>
           <%# <li class="nav-item">
             <a href="#" class="nav-link">Collection</a>
           </li>

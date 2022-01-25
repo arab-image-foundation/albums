@@ -11,6 +11,11 @@ config :aif_albums,
   namespace: AIFAlbums,
   ecto_repos: [AIFAlbums.Repo]
 
+config :aif_albums,
+  AIFAlbums.Mailer,
+  adapter: Swoosh.Adapters.Local
+
+
 # Configures the endpoint
 config :aif_albums, AIFAlbumsWeb.Endpoint,
   url: [host: "localhost"],
