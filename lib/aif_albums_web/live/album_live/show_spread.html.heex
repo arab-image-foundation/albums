@@ -39,12 +39,12 @@
   <div class="col-12 col-md-9 col-lg-6 order-2 order-md-1 pt-5">
 
     <%= if @previous_spread_id == nil do %>
-      <%= "Album #{@album_sequence} of #{@number_of_albums_in_collection} from " %>
+      <%= "Album #{@album_sequence} of #{@number_of_albums_in_collection} from the " %>
       <%= if @number_of_albums_in_collection == 1 do %>
-        <%= "#{@album.collection.name} collection (#{@album.collection.aifid})" %>
+        <%= "#{@album.collection.name} Collection (#{@album.collection.aifid})" %>
       <% else %>
         <%= live_redirect to: Routes.collection_show_path(@socket, :show, @album.collection) do %>
-          <%= "#{@album.collection.name} collection (#{@album.collection.aifid})" %>
+          <%= "#{@album.collection.name} Collection (#{@album.collection.aifid})" %>
         <% end %>
       <% end %>
       <div class="mt-3">
