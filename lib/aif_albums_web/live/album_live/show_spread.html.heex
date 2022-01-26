@@ -67,7 +67,7 @@
       <div>
         <%= if @current_album_spread.inscriptions != nil do %>
           <h4>Inscriptions:</h4>
-          <p><%= @current_album_spread.inscriptions %></p>
+          <p><%= text_to_html(@current_album_spread.inscriptions) %></p>
         <% end %>
         <%= if @current_album_spread.height != nil do %>
           <h4>>Height:</h4>
