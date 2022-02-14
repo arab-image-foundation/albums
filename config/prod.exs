@@ -11,6 +11,7 @@ import Config
 # before starting your production server.
 config :aif_albums, AIFAlbumsWeb.Endpoint,
   # url: [host: "example.com", port: 80],
+  force_ssl: [rewrite_on: [:x_forwarded_proto]],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 # config :aif_albums, uploads_path: "/images"
