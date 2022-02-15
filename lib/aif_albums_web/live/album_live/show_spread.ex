@@ -23,6 +23,9 @@ defmodule AIFAlbumsWeb.AlbumLive.ShowSpread do
     album = Albums.get_album_with_collection_and_spreads(album_id)
 
     album_spreads_list = Enum.map(album.album_spreads, fn %AlbumSpread{id: id} -> id end)
+    number_of_spreads = Enum.count(album_spreads_list)
+    current_spread_position =
+      1 + Enum.find_index(album_spreads_list, &(&1 == String.to_integer(spread_id)))
 
     album_sequence = String.slice(album.aifid, -3, 3) |> String.to_integer()
 
@@ -45,6 +48,8 @@ defmodule AIFAlbumsWeb.AlbumLive.ShowSpread do
      |> assign(:album_sequence, album_sequence)
      |> assign(:number_of_albums_in_collection, number_of_albums_in_collection)
      |> assign(:previous_spread_id, previous_spread_id)
+     |> assign(:number_of_spreads, number_of_spreads)
+     |> assign(:current_spread_position, current_spread_position)
      |> assign(:next_spread_id, next_spread_id)
      |> assign(:current_album_spread, current_album_spread)
      |> assign(:page_title, "Album Page")

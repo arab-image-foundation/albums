@@ -77,6 +77,9 @@
     <% else %>
 
       <div>
+        <p>
+          Spread <%= @current_spread_position %> of <%= @number_of_spreads %>
+        </p>
         <%= if @current_album_spread.inscriptions != nil do %>
           <h4>Inscriptions:</h4>
           <p><%= text_to_html(@current_album_spread.inscriptions) %></p>
