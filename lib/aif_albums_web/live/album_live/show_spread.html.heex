@@ -60,6 +60,18 @@
           <h4>Condition:</h4>
           <p><%= @album.condition %></p>
         <% end %>
+        <%= if @album.height != nil do %>
+          <h4>Album Height:</h4>
+          <p><%= @album.height %> cm</p>
+        <% end %>
+        <%= if @album.width != nil do %>
+          <h4>Album Width:</h4>
+          <p><%= @album.width %> cm</p>
+        <% end %>
+        <%= if @album.depth != nil do %>
+          <h4>Album Depth:</h4>
+          <p><%= @album.depth %> cm</p>
+        <% end %>
       </div>
 
     <% else %>
