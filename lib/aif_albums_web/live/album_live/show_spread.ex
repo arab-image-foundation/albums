@@ -25,7 +25,12 @@ defmodule AIFAlbumsWeb.AlbumLive.ShowSpread do
     album_spreads_list = Enum.map(album.album_spreads, fn %AlbumSpread{id: id} -> id end)
     number_of_spreads = Enum.count(album_spreads_list)
     current_spread_position =
-      1 + Enum.find_index(album_spreads_list, &(&1 == String.to_integer(spread_id)))
+      case spread_id do
+        "cover" ->
+          1
+        _ ->
+          1 + Enum.find_index(album_spreads_list, &(&1 == String.to_integer(spread_id)))
+      end
 
     album_sequence = String.slice(album.aifid, -3, 3) |> String.to_integer()
 
